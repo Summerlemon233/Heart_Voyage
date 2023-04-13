@@ -47,7 +47,10 @@ class _treehole_animationState extends State<treehole_animation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,
         title: Text('吐苦水树洞'),
       ),
       body: SafeArea(
@@ -58,7 +61,8 @@ class _treehole_animationState extends State<treehole_animation>
               opacity: opacityAnimation,
               child: Text(
                 "整理好心情\n继续出发吧",
-                style: TextStyle(fontSize: 40),
+                style: TextStyle(fontSize: 40,color: Color.fromRGBO(215, 169, 83, 1),fontStyle: FontStyle.italic),
+
               ),
             ),
           ),

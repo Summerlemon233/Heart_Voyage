@@ -24,6 +24,7 @@ class _signState extends State<sign> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
   late LinkedHashMap myEvents = returnMyEvents();
+
   //bool _isTodaysigned = basicData['isTodaySigned'];
 
   returnMyEvents() {
@@ -111,9 +112,21 @@ class _signState extends State<sign> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
-        title: Text('每日打卡'),
-      ),
+          backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+          foregroundColor: Colors.white,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("每日打卡"),
+              IconButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  icon: const Icon(Icons.refresh)),
+            ],
+          )),
       body: SafeArea(
         child: Column(
           children: [

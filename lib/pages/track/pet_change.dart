@@ -19,18 +19,24 @@ class _pet_changeState extends State<pet_change> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,
         title: Text("更换心宠"),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            Text('当前心宠：${names_pet[nowSelected]}'),
+            SizedBox(height: 20,),
+            Text('当前心宠：${names_pet[nowSelected]}',style: TextStyle(fontSize: 25),),
+            SizedBox(height: 20,),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   FillImageCard(
+
                     imageProvider: AssetImage('assets/images/pet0.png'),
                     tags: [
                       RawChip(

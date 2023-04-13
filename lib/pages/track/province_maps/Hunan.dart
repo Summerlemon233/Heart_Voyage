@@ -11,7 +11,10 @@ class _HunanState extends State<Hunan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("北京"),),
+      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,title: Text("北京"),),
       body: SafeArea(
         child: ListView(
           children: [],

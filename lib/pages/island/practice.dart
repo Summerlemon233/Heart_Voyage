@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/island/ZHENGNIAN.dart';
 import 'package:heart_voyage/pages/island/sports.dart';
+
 import '../tabs/sailCanvas.dart';
 import '../tabs/sailIsland.dart';
 import '../tabs/sailTrack.dart';
@@ -74,81 +75,86 @@ class practicePage extends StatefulWidget {
 class _practicePageState extends State<practicePage> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 1400,
-        child: ListView(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            ListTile(
-              leading: const SizedBox(
-                height: 70,
-                width: 70,
-                child: Image(
-                  image: AssetImage('assets/images/ZHENGNIAN.png'),
-                  fit: BoxFit.fitHeight,
-                ),
+    return Scaffold(
+      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          ListTile(
+            leading: const SizedBox(
+              height: 70,
+              width: 70,
+              child: Image(
+                image: AssetImage('assets/images/ZHENGNIAN.png'),
+                fit: BoxFit.fitHeight,
               ),
-              title: const Text('正念系列'),
-              subtitle: const Text('可获得的成长值：10分'),
-              onTap: () => Get.to(ZHENGNIAN()),
             ),
-            const Divider(),
-            ListTile(
-              leading: SizedBox(
-                height: 70,
-                width: 70,
-                child: Image(
-                  image: AssetImage('assets/images/sport.png'),
-                  fit: BoxFit.fitHeight,
-                ),
+            title: const Text('正念系列'),
+            subtitle: const Text('可获得的成长值：10分'),
+            onTap: () => Get.to(ZHENGNIAN()),
+          ),
+          const Divider(),
+          ListTile(
+            leading: SizedBox(
+              height: 70,
+              width: 70,
+              child: Image(
+                image: AssetImage('assets/images/sport.png'),
+                fit: BoxFit.fitHeight,
               ),
-              title: Text('运动解压打卡'),
-              subtitle: Text('可获得的成长值：10分'),
-              onTap: () => Get.to(sports()),
             ),
-            const Divider(),
-            const ListTile(
-              leading: SizedBox(
-                height: 70,
-                width: 70,
-                child: Image(
-                  image: AssetImage('assets/images/pure_music.png'),
-                  fit: BoxFit.fitHeight,
-                ),
+            title: Text('运动解压打卡'),
+            subtitle: Text('可获得的成长值：10分'),
+            onTap: () => Get.to(sports()),
+          ),
+          const Divider(),
+          const ListTile(
+            leading: SizedBox(
+              height: 70,
+              width: 70,
+              child: Image(
+                image: AssetImage('assets/images/pure_music.png'),
+                fit: BoxFit.fitHeight,
               ),
-              title: Text('静听一段纯音乐'),
-              subtitle: Text('可获得的成长值：5分\n所需时长：3分20秒'),
             ),
-            const Divider(),
-            const ListTile(
-              leading: SizedBox(
-                height: 70,
-                width: 70,
-                child: Image(
-                  image: AssetImage('assets/images/massage.png'),
-                  fit: BoxFit.fitHeight,
-                ),
+            title: Text('静听一段纯音乐'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：3分20秒'),
+          ),
+          const Divider(),
+          const ListTile(
+            leading: SizedBox(
+              height: 70,
+              width: 70,
+              child: Image(
+                image: AssetImage('assets/images/massage.png'),
+                fit: BoxFit.fitHeight,
               ),
-              title: Text('按摩舒缓'),
-              subtitle: Text('可获得的成长值：5分\n所需时长：7分35秒'),
             ),
-            const Divider(),
-            const ListTile(
-              leading: SizedBox(
-                height: 70,
-                width: 70,
-                child: Image(
-                  image: AssetImage('assets/images/white_noise.png'),
-                  fit: BoxFit.fitHeight,
-                ),
+            title: Text('按摩舒缓'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：7分35秒'),
+          ),
+          const Divider(),
+          const ListTile(
+            leading: SizedBox(
+              height: 70,
+              width: 70,
+              child: Image(
+                image: AssetImage('assets/images/white_noise.png'),
+                fit: BoxFit.fitHeight,
               ),
-              title: Text('静听一段白噪音'),
-              subtitle: Text('可获得的成长值：5分\n所需时长：2分55秒'),
             ),
-            const Divider(),
-          ],
-        ));
+            title: Text('静听一段白噪音'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：2分55秒'),
+          ),
+          const Divider(),
+        ],
+      ),
+    );
   }
 }

@@ -162,8 +162,8 @@ class _upload_starState extends State<upload_star> {
           backgroundColor: Color.fromRGBO(45, 73, 104, 1),
           foregroundColor: Colors.white,
           title: Text(
-        "上传星星",
-      )),
+            "上传星星",
+          )),
       body: SafeArea(
           child: Stack(
         alignment: Alignment.topLeft,
@@ -438,14 +438,19 @@ class _upload_starState extends State<upload_star> {
                       isSaved == false
                           ? ElevatedButton(
                               onPressed: () {
-                                setState(() {
-                                  saveStarData();
-                                  //storeStarDataSingle(basicData["star_case"] - 1);
-                                  //storeStarData();
-                                  saveBasicData();
-                                  Get.snackbar('提示', '保存成功',
+                                if (selectedAsset == null) {
+                                  Get.snackbar('提示', '您还未选择图片，请重新选择。',
                                       duration: Duration(milliseconds: 800));
-                                });
+                                } else {
+                                  setState(() {
+                                    saveStarData();
+                                    //storeStarDataSingle(basicData["star_case"] - 1);
+                                    //storeStarData();
+                                    saveBasicData();
+                                    Get.snackbar('提示', '保存成功',
+                                        duration: Duration(milliseconds: 800));
+                                  });
+                                }
                               },
                               child: Text("保存"))
                           : ElevatedButton(

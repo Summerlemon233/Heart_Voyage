@@ -161,7 +161,6 @@ class _drawerListLoginedState extends State<drawerListLogined> {
                 leading: Icon(Icons.chat),
                 title: Text("消息中心"),
               ),*/
-              Divider(),
               ListTile(
                   leading: Icon(Icons.group_add),
                   title: Text("我的好友"),
@@ -171,7 +170,7 @@ class _drawerListLoginedState extends State<drawerListLogined> {
                     });
                   }),
               Divider(),
-              SwitchListTile(
+              /*SwitchListTile(
                 secondary: Icon(Icons.nightlight_round),
                 title: Text('夜间模式'),
                 value: isDarkMode,
@@ -183,7 +182,7 @@ class _drawerListLoginedState extends State<drawerListLogined> {
                   });
                 },
               ),
-              Divider(),
+              Divider(),*/
               ListTile(
                 leading: Icon(Icons.logout),
                 title: Text("退出登录"),
@@ -276,7 +275,7 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
                   });
                 },
               ),
-              Divider(),
+             /* Divider(),
               SwitchListTile(
                 secondary: Icon(Icons.nightlight_round),
                 title: Text('夜间模式'),
@@ -288,7 +287,7 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
                         isDarkMode ? ThemeMode.dark : ThemeMode.light);
                   });
                 },
-              ),
+              ),*/
               Divider(),
               ListTile(
                 leading: Icon(Icons.power_settings_new),

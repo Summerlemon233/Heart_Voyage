@@ -14,7 +14,10 @@ class _anxiety_testState extends State<anxiety_test> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,
         title: Text('焦虑自测'),
       ),
       body: SafeArea(
@@ -92,6 +95,7 @@ class _anxiety_testState extends State<anxiety_test> {
               Get.to(anxiety_test());
             },
             child: Center(
+              widthFactor: MediaQuery.of(context).size.width * 0.8,
               child: Text(
                 '焦虑的影响测试',
                 style: TextStyle(

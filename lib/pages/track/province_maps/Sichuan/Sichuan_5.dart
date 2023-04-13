@@ -11,7 +11,10 @@ class _Sichuan_5State extends State<Sichuan_5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("杜甫草堂",)),
+      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      appBar: AppBar(
+          backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+          foregroundColor: Colors.white,title: Text("杜甫草堂",)),
       body: SafeArea(
         child: Column(
           children: [

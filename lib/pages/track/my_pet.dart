@@ -14,19 +14,41 @@ class _my_petState extends State<my_pet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("我的心宠"),),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [Text("我的心宠"),
+            IconButton(onPressed: (){
+              setState(() {
+
+              });
+            }, icon: Icon(Icons.refresh))],
+        )),
       body: SafeArea
         (
         child: Column
           (
           children: [
-            Align(
-              child: common_widgets.returnPet(),
-              alignment: Alignment.center,
+            Container(
+              height: 280,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: common_widgets.returnPet()!.image,fit: BoxFit.fitHeight),
+
+              ),
             ),
+           /*Align(
+              child: common_widgets.returnPet(),
+               alignment: Alignment.center,
+            ),*/
             SizedBox(height: 40,),
             ElevatedButton(onPressed: (){
+              setState(() {
                 Get.to(pet_change());
+              });
+
             }, child: Text("更换心宠")),
           ],
         ),

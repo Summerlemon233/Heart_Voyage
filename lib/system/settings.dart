@@ -49,7 +49,11 @@ class _settingsState extends State<settings> {
     var _readPhotoPath_avatar_var = readPhotoPath_avatar();
     bool _isSelectedAvatar = !(PhotoPath_avatar[0] == "");
     return Scaffold(
-      appBar: AppBar(title: Row(
+      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+        foregroundColor: Colors.white,
+        title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[Text('设置'),
           IconButton(onPressed: (){
@@ -61,6 +65,7 @@ class _settingsState extends State<settings> {
       ),),
       body: ListView(
         children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           ListTile(
             leading:  Avatar(image: _isSelectedAvatar
                 ? imageFromFile(PhotoPath_avatar[0]).image
@@ -72,7 +77,7 @@ class _settingsState extends State<settings> {
               });
             },//_pickAvatar,
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('我的好友'),
@@ -105,7 +110,7 @@ class _settingsState extends State<settings> {
             },
             value: _switchSelected,
           ),*/
-          SwitchListTile(
+          /*SwitchListTile(
             secondary: Icon(Icons.nightlight_round),
             title: Text('夜间模式'),
             value: isDarkMode,
@@ -115,7 +120,7 @@ class _settingsState extends State<settings> {
                 Get.changeThemeMode(isDarkMode ? ThemeMode.dark : ThemeMode.light);
               });
             },
-          ),
+          ),*/
           ListTile(
             leading: Icon(Icons.info_outline),
             title: Text('关于我们'),

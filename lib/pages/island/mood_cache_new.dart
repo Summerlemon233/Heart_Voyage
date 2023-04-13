@@ -47,7 +47,10 @@ class _mood_cache_newState extends State<mood_cache_new> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+          foregroundColor: Colors.white,
           title: Text('新的积极日记'),
         ),
         body: Column(
@@ -110,12 +113,17 @@ class _mood_cache_newState extends State<mood_cache_new> {
                         isSaved_mood == false
                             ? ElevatedButton(
                                 onPressed: () {
+                                  if (selectedAsset == null) {
+                                    Get.snackbar('提示', '您还未选择图片，请重新选择。',
+                                        duration: Duration(milliseconds: 800));
+                                  }
+                                  else{
                                   setState(() {
                                     saveMoodData();
                                     saveBasicData();
                                     Get.snackbar('提示', '保存成功~',
                                         duration: Duration(milliseconds: 800));
-                                  });
+                                  });}
                                 },
                                 child: Text('保存'))
                             : ElevatedButton(

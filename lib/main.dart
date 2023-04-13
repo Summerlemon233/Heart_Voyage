@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         initialRoute: "/",
-        defaultTransition: Transition.circularReveal,
+        defaultTransition: Transition.fadeIn,
         //onGenerateRoute: onGenerateRoute,
       getPages: [],
         home: Tabs(),
