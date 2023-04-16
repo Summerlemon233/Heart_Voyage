@@ -47,36 +47,42 @@ class _seekHeartState extends State<seekHeart> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
+        child: ListView(
       children: [
         SizedBox(
           height: 30,
         ),
-        ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
-              foregroundColor: MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
-              minimumSize: MaterialStateProperty.all(Size(
-                  MediaQuery.of(context).size.width * 0.8,
-                  MediaQuery.of(context).size.height * 0.1)),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  side: BorderSide(color: Color.fromRGBO(90, 66, 53, 1),width: 2.0),
+        Container(
+          padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, 0, MediaQuery.of(context).size.width * 0.1, 0),
+          child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                foregroundColor: MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                minimumSize: MaterialStateProperty.all(Size(
+                    MediaQuery.of(context).size.width * 0.8,
+                    MediaQuery.of(context).size.height * 0.1)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: BorderSide(color: Color.fromRGBO(90, 66, 53, 1),width: 2.0),
+                  ),
                 ),
               ),
-            ),
-            onPressed: () {
-              Get.to(sign());
-            },
-            child: Text("每日打卡",
-              style: TextStyle(
-                fontSize: 32,
-              ),)),
+              onPressed: () {
+                Get.to(sign());
+              },
+              child: Text("每日打卡",
+                style: TextStyle(
+                  fontSize: 32,
+                ),)),
+        ),
+
         SizedBox(
           height: 0.03 * MediaQuery.of(context).size.height,
         ),
-        ElevatedButton(
+        Container(
+          padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, 0, MediaQuery.of(context).size.width * 0.1, 0),
+          child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
               foregroundColor: MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
@@ -96,7 +102,7 @@ class _seekHeartState extends State<seekHeart> {
             child: Text("焦虑自测",
               style: TextStyle(
                 fontSize: 32,
-              ),)),
+              ),))),
         SizedBox(
           height: 0.1 * MediaQuery.of(context).size.height,
         ),
@@ -108,15 +114,13 @@ class _seekHeartState extends State<seekHeart> {
         SizedBox(
           height: 0.02 * MediaQuery.of(context).size.height,
         ),
-        Expanded(
-          child: SizedBox(
-            height: 0.5 * MediaQuery.of(context).size.height,
-            width: 0.9 * MediaQuery.of(context).size.width,
+        Container(
+            height: 0.4 * MediaQuery.of(context).size.height,
+            padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, 0, MediaQuery.of(context).size.width * 0.1, 0),
             child: LineChart(
               mainData(),
             ),
           ),
-        ),
         SizedBox(height: 40,),
       ],
     ));
@@ -130,19 +134,22 @@ class _seekHeartState extends State<seekHeart> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('第0周', style: style);
+        text = const Text('第0周', style: TextStyle(fontFamily: 'Helvetica_Neue'));
         break;
       case 1:
-        text = const Text('第1周', style: style);
+        text = const Text('第1周', style: TextStyle(fontFamily: 'Helvetica_Neue'));
         break;
       case 2:
-        text = const Text('第2周', style: style);
+        text = const Text('第2周', style: TextStyle(fontFamily: 'Helvetica_Neue'));
         break;
       case 3:
-        text = const Text('第3周', style: style);
+        text = const Text('第3周', style: TextStyle(fontFamily: 'Helvetica_Neue'));
+        break;
+      case 4:
+        text = const Text('时间（周）', style: TextStyle(fontFamily: 'Helvetica_Neue'));
         break;
       default:
-        text = const Text('', style: style);
+        text = const Text('', style: TextStyle(fontFamily: 'Helvetica_Neue'));
         break;
     }
 
@@ -168,10 +175,13 @@ class _seekHeartState extends State<seekHeart> {
       case 24:
         text = '24';
         break;
+      case 32:
+        text = '焦虑值';
+        break;
       default:
         return Container();
     }
-    return Text(text, style: style, textAlign: TextAlign.left);
+    return Text(text, style: TextStyle(fontFamily: 'Helvetica_Neue'), textAlign: TextAlign.center);
   }
 
   LineChartData mainData() {

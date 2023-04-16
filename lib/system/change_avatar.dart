@@ -70,10 +70,9 @@ class _change_avatarState extends State<change_avatar> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Avatar(
-                image: isSelectedAvatar
-                    ? imageFromFile(PhotoPath_avatar[0]).image
-                    : returnPet().image),
+            isSelectedAvatar
+                ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
+                : returnPet(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),

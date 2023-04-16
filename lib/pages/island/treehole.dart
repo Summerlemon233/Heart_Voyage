@@ -24,40 +24,46 @@ class _treeholeState extends State<treehole> {
         body: ListView(
           children: [
             Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/treehole_bkgnd.jpg'),fit: BoxFit.cover)
+              ),
               child: Column(
                 children: [
                   SizedBox(height: 10,),
-                  Text('To:树洞',style: TextStyle(fontSize: 20),),
+                  Text('To:树洞',style: TextStyle(fontSize: 20,color: Colors.white),),
                   SizedBox(
                     height: 5,
                   ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    child: TextField(
+                  Opacity(opacity: 0.7,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: TextField(
 
-                      maxLines: 15,
-                      decoration: InputDecoration(
-                        //hintText: "请输入多行文本",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(30))
+                        maxLines: 20,
+                        decoration: InputDecoration(
+                          //hintText: "请输入多行文本",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(30))
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        filled: true,
-                        fillColor: Colors.white,
                       ),
-
                     ),
                   ),
+
 
                   Text(
                     '有什么不开心的事',
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20,color: Colors.white),
                   ),
                   Text(
                     '可以和树洞讲讲看呀',
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20,color: Colors.white),
                   ),
                   SizedBox(
                     height: 40,
@@ -76,7 +82,7 @@ class _treeholeState extends State<treehole> {
                               onPressed: () {
                                 Get.to(XINXIE());
                               },
-                              icon: Icon(Icons.question_mark)),
+                              icon: Icon(Icons.question_mark,color: Colors.white,)),
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                       ),

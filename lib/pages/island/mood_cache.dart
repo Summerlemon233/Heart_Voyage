@@ -63,7 +63,8 @@ class _mood_cacheState extends State<mood_cache> {
               itemCount:
                   basicData["mood_cache_case"], //basicData["mood_cache_case"],
               itemBuilder: (context, index) => ListTile(
-                leading: AspectRatio(
+                leading: Text("${index + 1}",textAlign: TextAlign.center,style: TextStyle(fontSize: 25,fontFamily: "Helvetica_Neue"),),
+                trailing: AspectRatio(
                   aspectRatio: 1,
                   child: photoPath_mood[index] != null
                       ? imageFromFile(photoPath_mood[index])

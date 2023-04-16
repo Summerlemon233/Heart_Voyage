@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:heart_voyage/pages/canvas/my_rank.dart';
 import 'package:heart_voyage/pages/canvas/my_star.dart';
 
+import '../../system/common_image.dart';
+import 'upload_star.dart';
+
 class about_star extends StatefulWidget {
   const about_star({Key? key}) : super(key: key);
 
@@ -89,7 +92,13 @@ class _about_starState extends State<about_star> {
                 left: MediaQuery.of(context).size.width / 3.4,
               ),
               Positioned(
-                child: Image.asset('assets/images/big_star.png'),
+                child: GestureDetector(
+                  child: Image.asset('assets/images/big_star.png'),
+                  onTap: () {
+                    selectedAsset = null;
+                    Get.to(upload_star());
+                  },
+                ),
                 top: MediaQuery.of(context).size.height / 3.0,
                 left: MediaQuery.of(context).size.width / 2.7,
               ),

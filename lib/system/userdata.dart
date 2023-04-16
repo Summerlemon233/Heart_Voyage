@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:core';
 import 'dart:io';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
@@ -27,6 +28,10 @@ import './userdata_func.dart';
   static int mood_cache_case = 0;
   static int star_case = 0;
 }*/
+
+class basicData_management extends GetxController {
+
+}
 
 Map<String,dynamic> basicData = {
   'isLogin':false,
@@ -62,7 +67,7 @@ Map<String,dynamic> basicData = {
   'date_mood':["","","","","","","","","","","","","","","","","","","","",],
   'title_mood':["","","","","","","","","","","","","","","","","","","","",],
   'context_mood':["","","","","","","","","","","","","","","","","","","","",],
-};
+}.obs;
 
 //存储“我的星星”部分的数据，限定最高存储10条。
 List date_star = ["","","","","","","","","","","","","","","","","","","","",];

@@ -34,10 +34,11 @@ class _my_petState extends State<my_pet> {
           children: [
             Container(
               height: 280,
-              decoration: BoxDecoration(
+              child: returnPet(),
+              /*decoration: BoxDecoration(
                 image: DecorationImage(image: returnPet().image,fit: BoxFit.fitHeight),
 
-              ),
+              ),*/
             ),
            /*Align(
               child: common_widgets.returnPet(),

@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/track/my_map.dart';
 import 'package:heart_voyage/pages/track/my_pet.dart';
-import 'package:heart_voyage/system/common_widgets.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
+
+import '../../system/common_widgets.dart';
 
 class sailTrack extends StatefulWidget {
   const sailTrack({Key? key}) : super(key: key);
@@ -39,8 +41,10 @@ class _sailTrackState extends State<sailTrack> {
         ),
         Container(
           margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-          child: Image(image: AssetImage('assets/images/Sichuan_map.png')
-          ,alignment: Alignment.center,),
+          child: Image(
+            image: AssetImage('assets/images/Sichuan_map.png'),
+            alignment: Alignment.center,
+          ),
         ),
         SizedBox(
           height: 10,
@@ -53,8 +57,6 @@ class _sailTrackState extends State<sailTrack> {
           alignment: Alignment.center,
           child: Text("已解锁城市：${basicData['CurrCity']}"),
         ),
-
-
         Container(
           height: 100,
           padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
@@ -64,7 +66,8 @@ class _sailTrackState extends State<sailTrack> {
           height: 10,
         ),
         Container(
-          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, 0, MediaQuery.of(context).size.width * 0.1, 0),
+          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1,
+              0, MediaQuery.of(context).size.width * 0.1, 0),
           child: LinearProgressIndicator(
             backgroundColor: Colors.grey[200],
             valueColor: AlwaysStoppedAnimation(Colors.blue),
@@ -73,21 +76,24 @@ class _sailTrackState extends State<sailTrack> {
           ),
         ),
         Container(
-          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3, 0, MediaQuery.of(context).size.width * 0.3, 0),
-          child: Text("成长值 ${basicData['score']}"),
+          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3,
+              0, MediaQuery.of(context).size.width * 0.3, 0),
+          child:
+          //Obx(() =>
+              Text("成长值 ${basicData['score']}"),
+          //),
           alignment: Alignment.center,
         ),
-
         SizedBox(height: 10),
         Container(
-          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3, 0, MediaQuery.of(context).size.width * 0.3, 0),
+          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3,
+              0, MediaQuery.of(context).size.width * 0.3, 0),
           child: ElevatedButton(
               onPressed: () {
                 Get.to(my_pet());
               },
               child: Text("我的心宠")),
         )
-
       ],
     ));
   }

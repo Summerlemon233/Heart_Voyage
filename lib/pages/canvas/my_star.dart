@@ -231,7 +231,8 @@ class _my_starState extends State<my_star> {
                   child: ListView.separated(
                     itemCount: basicData["star_case"],
                     itemBuilder: (context, index) => ListTile(
-                      leading: AspectRatio(
+                      leading: Text("${index + 1}",textAlign: TextAlign.center,style: TextStyle(fontSize: 25,fontFamily: "Helvetica_Neue"),),
+                      trailing: AspectRatio(
                         aspectRatio: 1,
                         child: imageFromFile(photoPath[index]),
                       ),

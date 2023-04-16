@@ -55,101 +55,110 @@ class _mood_cache_newState extends State<mood_cache_new> {
         ),
         body: ListView(
           children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Container(
-                    //height: MediaQuery.of(context).size.height * 0.6,
-                    child: Column(
-                      children: [
-                        TextField(
+            Container(
+              height: MediaQuery.of(context).size.height * 1.5,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/treehole_bkgnd.jpg'),
+                    fit: BoxFit.cover),
+              ),
+              child: Opacity(
+                opacity: 1,
+                child: Container(
+                  height: 400,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Opacity(opacity: 0.7,child: Container(
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: TextFormField(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
                           controller: titleController,
-                          maxLines: 1,
-                          decoration: InputDecoration(
-                              hintText: "在这里输入标题",
-                              border: OutlineInputBorder()),
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: '简单描述一下吧',
+                            labelStyle: TextStyle(color: Colors.black),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                          ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        TextField(
+                      )
+                      ),
+
+                      SizedBox(
+                        height: 5,
+                      ),
+                      /*TextField(
                           controller: contextController,
                           maxLines: 10,
                           decoration: InputDecoration(
                               hintText: "请输入多行文本",
                               border: OutlineInputBorder()),
-                        ),
-                        Container(
-                          height: 200,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("点击上传图片："),
-                              Container(
-                                alignment: Alignment.center,
-                                  child: selectedAsset_mood == null
-                                      ? TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              selectPhoto_mood(context,
-                                                  basicData['mood_cache_case']);
-                                            });
-                                          },
-                                          child: Text("点击选择图片"))
-                                      : Expanded(
-                                          /*height: MediaQuery.of(context).size.height * 0.2,
-                                width: MediaQuery.of(context).size.height * 0.4,*/
-                                          child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              selectPhoto_mood(context,
-                                                  basicData["mood_cache_case"]);
-                                            });
-                                          },
-                                          child: AssetEntityImage(
-                                              selectedAsset_mood!,
-                                              isOriginal: true),
-                                        )))
-                            ],
-                          ),
-                        ),
-                        isSaved_mood == false
-                            ? ElevatedButton(
-                                onPressed: () {
-                                  if (selectedAsset_mood == null) {
-                                    Get.snackbar('提示', '您还未选择图片，请重新选择。',
-                                        duration: Duration(milliseconds: 800));
-                                  }
-                                  else{
+                        ),*/
+
+                      Text("点击上传图片：",style: TextStyle(color: Colors.white),),
+                      Container(
+                        height: 400,
+                          alignment: Alignment.center,
+                          child: selectedAsset_mood == null
+                              ? TextButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      selectPhoto_mood(context,
+                                          basicData['mood_cache_case']);
+                                    });
+                                  },
+                                  child: Text("点击选择图片",style: TextStyle(color: Colors.white),))
+                              : GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectPhoto_mood(context,
+                                          basicData["mood_cache_case"]);
+                                    });
+                                  },
+                                  child: AssetEntityImage(selectedAsset_mood!,
+                                      isOriginal: true),
+                                )),
+                      isSaved_mood == false
+                          ? ElevatedButton(
+                              onPressed: () {
+                                if (selectedAsset_mood == null) {
+                                  Get.snackbar('提示', '您还未选择图片，请重新选择。',
+                                      duration: Duration(milliseconds: 800));
+                                } else {
                                   setState(() {
                                     saveMoodData();
                                     saveBasicData();
 
                                     Get.snackbar('提示', '保存成功~',
                                         duration: Duration(milliseconds: 800));
-                                  });}
-                                },
-                                child: Text('保存'))
-                            : ElevatedButton(
-                                onPressed: ()
-                                {
-                                  selectedAsset_mood == null;
-                                  Get.back();
-                                },
-                                child: Text('返回'))
-                        //ElevatedButton(onPressed: (){}, child: child)
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.brown,
-                          width: 3.0,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(2.0))),
+                                  });
+                                }
+                              },
+                              child: Text('保存'))
+                          : ElevatedButton(
+                              onPressed: () {
+                                selectedAsset_mood == null;
+                                Get.back();
+                              },
+                              child: Text('返回'))
+                    ],
                   ),
-                ],
+                  decoration: BoxDecoration(
+                      //color: Colors.white,
+                      border: Border.all(
+                        //color: Colors.white,
+                        width: 0.5,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                ),
               ),
-              flex: 1,
             ),
           ],
         ));

@@ -3,20 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/system/about_us.dart';
 import 'package:heart_voyage/system/friend.dart';
-import 'package:heart_voyage/system/themes.dart';
-import '../main.dart';
-import '../pages/tabs.dart';
-import './login.dart';
-import './register.dart';
-import './userdata.dart';
-
-import 'package:flutter/material.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
+import './common_widgets.dart';
+import './userdata.dart';
 import 'change_avatar.dart';
 import 'common_image.dart';
 import 'userdata_func.dart';
-import './common_widgets.dart';
 
 class settings extends StatefulWidget {
   //final String username;
@@ -30,9 +23,9 @@ class settings extends StatefulWidget {
 class _settingsState extends State<settings> {
   bool isDarkMode = Get.isDarkMode;
   AssetEntity? _avatar;
+
   //bool _tmp = Get.isDarkMode;
   bool _switchSelected = Get.isDarkMode;
-
 
   /*Future<void> _pickAvatar() async {
     final result = await AssetPicker.pickAssets(context, maxAssets: 1);
@@ -41,11 +34,8 @@ class _settingsState extends State<settings> {
     }
   }*/
   @override
-
-
   @override
   Widget build(BuildContext context) {
-
     var _readPhotoPath_avatar_var = readPhotoPath_avatar();
     bool _isSelectedAvatar = !(PhotoPath_avatar[0] == "");
     return Scaffold(
@@ -54,28 +44,33 @@ class _settingsState extends State<settings> {
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
         title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[Text('设置'),
-          IconButton(onPressed: (){
-            setState(() {
-              loadBasicData();
-              readPhotoPath_avatar();
-            });
-          }, icon: Icon(Icons.refresh))],
-      ),),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text('设置'),
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    loadBasicData();
+                    readPhotoPath_avatar();
+                  });
+                },
+                icon: Icon(Icons.refresh))
+          ],
+        ),
+      ),
       body: ListView(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           ListTile(
-            leading:  Avatar(image: _isSelectedAvatar
-                ? imageFromFile(PhotoPath_avatar[0]).image
-                :returnPet().image),
+            leading: _isSelectedAvatar
+                ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
+                : returnPet(),
             title: Text("${basicData['username']}"),
-            onTap: (){
+            onTap: () {
               setState(() {
                 Get.to(change_avatar());
               });
-            },//_pickAvatar,
+            }, //_pickAvatar,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           ListTile(
@@ -137,9 +132,7 @@ class _settingsState extends State<settings> {
             leading: Icon(Icons.exit_to_app),
             title: Text('退出登录'),
             onTap: () {
-              setState(() {
-
-              });
+              setState(() {});
               // 点击退出登录后的操作
               //log_out;
               print('退出登录');

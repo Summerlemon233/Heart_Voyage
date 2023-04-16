@@ -1,12 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
-import 'package:path/path.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
-
 
 String getDate() {
   DateTime now = DateTime.now();
@@ -23,7 +18,13 @@ class mapListTile extends StatelessWidget {
   final String Area;
   final String AssetPath;
   final VoidCallback onTapFunc;
-  const mapListTile({Key? key,required this.Area,required this.AssetPath,required this.onTapFunc}) : super(key: key);
+
+  const mapListTile(
+      {Key? key,
+      required this.Area,
+      required this.AssetPath,
+      required this.onTapFunc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,35 +36,46 @@ class mapListTile extends StatelessWidget {
         height: 128,
         alignment: Alignment.bottomRight,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(AssetPath),
-              fit: BoxFit.fitHeight),
+          image: DecorationImage(
+              image: AssetImage(AssetPath), fit: BoxFit.fitHeight),
         ),
         child: SizedBox(
-          child: Text(Area,style:TextStyle(color: Colors.white,fontSize: 25)),
+          child:
+              Text(Area, style: TextStyle(color: Colors.white, fontSize: 25)),
         ),
       ),
     );
-
   }
 }
-Image returnPet() {
+
+Widget returnPet() {
+  Image _tmp;
   switch (basicData['CurrPet']) {
     case 0:
-      return Image(image: AssetImage('assets/images/pet0.png'));
+      _tmp =  Image(image: AssetImage('assets/images/pet0.png'));break;
     case 1:
-      return Image(image: AssetImage('assets/images/pet1.png'));
+      _tmp =  Image(image: AssetImage('assets/images/pet1.png'));break;
+    //return Image(image: AssetImage('assets/images/pet1.png'));
     case 2:
-      return Image(image: AssetImage('assets/images/pet2.png'));
+      _tmp =  Image(image: AssetImage('assets/images/pet2.png'));break;
+    //return Image(image: AssetImage('assets/images/pet2.png'));
     case 3:
-      return Image(image: AssetImage('assets/images/pet3.png'));
+      _tmp =  Image(image: AssetImage('assets/images/pet3.png'));break;
+    //return Image(image: AssetImage('assets/images/pet3.png'));
     default:
-      return Image(image: AssetImage('assets/images/pet0.png'));
+      _tmp =  Image(image: AssetImage('assets/images/pet0.png'));break;
+    //return Image(image: AssetImage('assets/images/pet0.png'));
   }
+  return /*Obx(() => Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.blue),
+      ),
+      child: CircleAvatar(
+        backgroundImage: _tmp.image,
+        radius: 50,
+      )))*/_tmp;
 }
-
-
-
-
 
 class common_widgets {
   static returnDialog(int rewards) {
@@ -88,15 +100,15 @@ class common_widgets {
               height: 20,
             ),
             Text("总成长值：${basicData['score']}分"),
-            ElevatedButton(onPressed: (){
-              Get.back();
-              Get.back();
-            }, child: Text("点我退出"))
+            ElevatedButton(
+                onPressed: () {
+                  Get.back();
+                  Get.back();
+                },
+                child: Text("点我退出"))
           ],
         ));
   }
-
-
 }
 
 class test extends StatefulWidget {

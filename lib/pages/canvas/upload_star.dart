@@ -240,10 +240,15 @@ class _upload_starState extends State<upload_star> {
                       ),
                       Divider(),
                       TextFormField(
+                        textAlign:  TextAlign.center,
                         controller: titleController,
-                        decoration: const InputDecoration(labelText: '任务描述'),
+                        decoration: const InputDecoration(labelText: '任务描述',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30))
+                          ),
+                        ),
                       ),
-                      //Divider(),
+                      Divider(),
                       /*Expanded(
                         child: */
                       Container(
@@ -331,97 +336,97 @@ class _upload_starState extends State<upload_star> {
                                     child: ListView(
                                       children: [
                                         ListTile(
-                                          title: Text("语言智能"),
-                                          subtitle: Text("掌握并运用语言、文字的能力"),
+                                          title: Text("语言智能",style: TextStyle(color: isSelectedType[1] ? Colors.grey:Colors.black),),
+                                          subtitle: Text("掌握并运用语言、文字的能力",style: TextStyle(color: isSelectedType[1] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[1] = true;
+                                              isSelectedType[1] = !isSelectedType[1];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("逻辑数学智能"),
+                                          title: Text("逻辑数学智能",style: TextStyle(color: isSelectedType[2] ? Colors.grey:Colors.black),),
                                           subtitle:
-                                              Text("逻辑思维推理、数学运算以及科学分析方面的能力"),
+                                              Text("逻辑思维推理、数学运算以及科学分析方面的能力",style: TextStyle(color: isSelectedType[2] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[2] = true;
+                                              isSelectedType[2] = !isSelectedType[2];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("音乐智能"),
-                                          subtitle: Text("感受、欣赏、演奏、歌唱、创作音乐的能力"),
+                                          title: Text("音乐智能",style: TextStyle(color: isSelectedType[3] ? Colors.grey:Colors.black),),
+                                          subtitle: Text("感受、欣赏、演奏、歌唱、创作音乐的能力",style: TextStyle(color: isSelectedType[3] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[3] = true;
+                                              isSelectedType[3] = !isSelectedType[3];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("肢体运作智能"),
+                                          title: Text("肢体运作智能",style: TextStyle(color: isSelectedType[4] ? Colors.grey:Colors.black),),
                                           subtitle: Text(
-                                              "运用全身或身体的某一部分，\n包括嘴和手，解决问题或创造产品的能力"),
+                                              "运用全身或身体的某一部分，\n包括嘴和手，解决问题或创造产品的能力",style: TextStyle(color: isSelectedType[4] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[4] = true;
+                                              isSelectedType[4] = !isSelectedType[4];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("人际智能"),
-                                          subtitle: Text("了解他人、与人合作的能力"),
+                                          title: Text("人际智能",style: TextStyle(color: isSelectedType[5] ? Colors.grey:Colors.black),),
+                                          subtitle: Text("了解他人、与人合作的能力",style: TextStyle(color: isSelectedType[5] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[5] = true;
+                                              isSelectedType[5] = !isSelectedType[5];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("空间智能"),
+                                          title: Text("空间智能",style: TextStyle(color: isSelectedType[6] ? Colors.grey:Colors.black),),
                                           subtitle: Text(
-                                              "针对所观察的事物，\n在脑海中形成一个模型或图案从而加以运用的能力"),
+                                              "针对所观察的事物，\n在脑海中形成一个模型或图案从而加以运用的能力",style: TextStyle(color: isSelectedType[6] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[6] = true;
+                                              isSelectedType[6] = !isSelectedType[6];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("内省智能"),
+                                          title: Text("内省智能",style: TextStyle(color: isSelectedType[7] ? Colors.grey:Colors.black),),
                                           subtitle:
-                                              Text("深入并理解自己内心世界并用以指导自己行为的能力"),
+                                              Text("深入并理解自己内心世界并用以指导自己行为的能力",style: TextStyle(color: isSelectedType[7] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[7] = true;
+                                              isSelectedType[7] = !isSelectedType[7];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("自然探索智能"),
+                                          title: Text("自然探索智能",style: TextStyle(color: isSelectedType[8] ? Colors.grey:Colors.black),),
                                           subtitle:
-                                              Text("能认识植物、动物和其它自然环境(如云和石头)的能力"),
+                                              Text("能认识植物、动物和其它自然环境(如云和石头)的能力",style: TextStyle(color: isSelectedType[8] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[8] = true;
+                                              isSelectedType[8] = !isSelectedType[8];
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("存在智能"),
+                                          title: Text("存在智能",style: TextStyle(color: isSelectedType[9] ? Colors.grey:Colors.white),),
                                           subtitle: Text(
-                                              "人们表现出的对生命、死亡和终极现实提出问题，\n并思考这些问题的倾向性"),
+                                              "人们表现出的对生命、死亡和终极现实提出问题，\n并思考这些问题的倾向性",style: TextStyle(color: isSelectedType[9] ? Colors.grey:Colors.black),),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[9] = true;
+                                              isSelectedType[9] = !isSelectedType[9];
                                             });
                                           },
                                         ),

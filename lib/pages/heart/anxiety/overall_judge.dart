@@ -5,20 +5,20 @@ import 'package:heart_voyage/pages/heart/anxiety/check_overall_score.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
-/*class CreateScale extends StatefulWidget {
-  String question;
+class CreateAnxietyOverallScale extends StatefulWidget {
+  final String question;
 
-  CreateScale({Key? key, required this.question}) : super(key: key);
+  CreateAnxietyOverallScale({Key? key, required this.question}) : super(key: key);
 
   @override
-  State<CreateScale> createState() => _CreateScaleState();
+  State<CreateAnxietyOverallScale> createState() => _CreateAnxietyOverallScaleState();
 }
 
-class _CreateScaleState extends State<CreateScale> {
-  String? _groupValue;
+class _CreateAnxietyOverallScaleState extends State<CreateAnxietyOverallScale> {
+  String? _groupValue = "没有";
+  int _deltaValue = 0;
 
   void initState() {
-    _groupValue = "没有";
     super.initState();
   }
 
@@ -29,7 +29,7 @@ class _CreateScaleState extends State<CreateScale> {
         Container(
           alignment: Alignment.centerLeft,
           child: Text(
-            this.question,
+            widget.question,
             textAlign: TextAlign.left,
             style: TextStyle(fontSize: 20, fontFamily: 'FZ_Kaiti'),
           ),
@@ -47,7 +47,9 @@ class _CreateScaleState extends State<CreateScale> {
                 onChanged: (value) {
                   setState(() {
                     _groupValue = value;
-                    _score += 0;
+                    score_overall_anxiety -= _deltaValue;
+                    _deltaValue = 0;
+                    score_overall_anxiety += _deltaValue;
                   });
                 }),
             Text(
@@ -60,7 +62,9 @@ class _CreateScaleState extends State<CreateScale> {
                 onChanged: (value) {
                   setState(() {
                     _groupValue = value;
-                    _score += 1;
+                    score_overall_anxiety -= _deltaValue;
+                    _deltaValue = 1;
+                    score_overall_anxiety += _deltaValue;
                   });
                 })
           ],
@@ -78,7 +82,9 @@ class _CreateScaleState extends State<CreateScale> {
                 onChanged: (value) {
                   setState(() {
                     _groupValue = value;
-                    _score += 2;
+                    score_overall_anxiety -= _deltaValue;
+                    _deltaValue = 2;
+                    score_overall_anxiety += _deltaValue;
                   });
                 }),
             Text(
@@ -91,7 +97,9 @@ class _CreateScaleState extends State<CreateScale> {
                 onChanged: (value) {
                   setState(() {
                     _groupValue = value;
-                    _score += 3;
+                    score_overall_anxiety -= _deltaValue;
+                    _deltaValue = 3;
+                    score_overall_anxiety += _deltaValue;
                   });
                 })
           ],
@@ -99,7 +107,9 @@ class _CreateScaleState extends State<CreateScale> {
       ],
     );;
   }
-}*/
+}
+
+int score_overall_anxiety = 0;
 
 class overall_judge extends StatefulWidget {
   const overall_judge({Key? key}) : super(key: key);
@@ -109,7 +119,7 @@ class overall_judge extends StatefulWidget {
 }
 
 class _overall_judgeState extends State<overall_judge> {
-  double _score = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -165,19 +175,19 @@ class _overall_judgeState extends State<overall_judge> {
               ),
             ),
             Divider(),
-            CreateScale('1.感到不安、担心及烦躁'),
+            CreateAnxietyOverallScale(question: '1.感到不安、担心及烦躁'),
             Divider(),
-            CreateScale('2.不能停止担心或控制不了担心'),
+            CreateAnxietyOverallScale(question: '2.不能停止担心或控制不了担心'),
             Divider(),
-            CreateScale('3.对各种各样的事情过度担心'),
+            CreateAnxietyOverallScale(question: '3.对各种各样的事情过度担心'),
             Divider(),
-            CreateScale('4.很紧张，很难放松下来'),
+            CreateAnxietyOverallScale(question: '4.很紧张，很难放松下来'),
             Divider(),
-            CreateScale('5.非常焦躁，以至无法静坐'),
+            CreateAnxietyOverallScale(question: '5.非常焦躁，以至无法静坐'),
             Divider(),
-            CreateScale('6.变得容易烦恼或易被激怒'),
+            CreateAnxietyOverallScale(question: '6.变得容易烦恼或易被激怒'),
             Divider(),
-            CreateScale('7.感到好像有什么可怕的事会发生'),
+            CreateAnxietyOverallScale(question: '7.感到好像有什么可怕的事会发生'),
             Divider(),
             SizedBox(
               height: 10,
@@ -186,9 +196,9 @@ class _overall_judgeState extends State<overall_judge> {
               width: 100,
               child: ElevatedButton(
                 onPressed: () {
-                  basicData["moodscore"] = _score;
+                  basicData["moodscore"] = score_overall_anxiety;
                   saveBasicData();
-                  Get.to(check_overall_score(), arguments: _score);
+                  Get.to(check_overall_score(), arguments: score_overall_anxiety);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -210,82 +220,6 @@ class _overall_judgeState extends State<overall_judge> {
       ),
     );
   }
-
-  CreateScale(String question) {
-    String? _groupValue = "没有";
-    return Column(
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            question,
-            textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 20, fontFamily: 'FZ_Kaiti'),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              '没有',
-              style: TextStyle(fontFamily: 'FZ_Kaiti'),
-            ),
-            Radio(
-                value: "没有",
-                groupValue: _groupValue,
-                onChanged: (value) {
-                  setState(() {
-                    _groupValue = value;
-                    _score += 0;
-                  });
-                }),
-            Text(
-              '偶尔',
-              style: TextStyle(fontFamily: 'FZ_Kaiti'),
-            ),
-            Radio(
-                value: "偶尔",
-                groupValue: _groupValue,
-                onChanged: (value) {
-                  setState(() {
-                    _groupValue = value;
-                    _score += 1;
-                  });
-                })
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              '有一半以上时间',
-              style: TextStyle(fontFamily: 'FZ_Kaiti'),
-            ),
-            Radio(
-                value: "有一半以上时间",
-                groupValue: _groupValue,
-                onChanged: (value) {
-                  setState(() {
-                    _groupValue = value;
-                    _score += 2;
-                  });
-                }),
-            Text(
-              '几乎天天',
-              style: TextStyle(fontFamily: 'FZ_Kaiti'),
-            ),
-            Radio(
-                value: "几乎天天",
-                groupValue: _groupValue,
-                onChanged: (value) {
-                  setState(() {
-                    _groupValue = value;
-                    _score += 3;
-                  });
-                })
-          ],
-        )
-      ],
-    );
-  }
 }
+
+
