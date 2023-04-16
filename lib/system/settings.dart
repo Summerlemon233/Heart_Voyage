@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/system/about_us.dart';
 import 'package:heart_voyage/system/friend.dart';
+import 'package:heart_voyage/system/login.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import './common_widgets.dart';
@@ -61,18 +62,31 @@ class _settingsState extends State<settings> {
       body: ListView(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          ListTile(
-            leading: _isSelectedAvatar
-                ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
-                : returnPet(),
-            title: Text("${basicData['username']}"),
+          GestureDetector(
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.width * 0.2,
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: _isSelectedAvatar
+                        ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
+                        : Avatar(image: AssetImage('assets/images/pet0.png')),
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.2,),
+                  Text("${basicData['username']}",style: TextStyle(fontSize: 20),),
+                ],
+              ),
+            ),
             onTap: () {
               setState(() {
                 Get.to(change_avatar());
               });
-            }, //_pickAvatar,
+            },
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          Divider(),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('我的好友'),
@@ -84,6 +98,7 @@ class _settingsState extends State<settings> {
               print('我的好友');
             },
           ),
+          Divider(),
           /*ListTile(
             leading: Icon(Icons.brightness_6),
             title: Text('切换主题'),
@@ -128,6 +143,7 @@ class _settingsState extends State<settings> {
               print('退出登录');
             },
           ),
+          Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('退出登录'),
@@ -136,8 +152,10 @@ class _settingsState extends State<settings> {
               // 点击退出登录后的操作
               //log_out;
               print('退出登录');
+              Get.offAll(login());
             },
           ),
+          Divider(),
           ListTile(
             leading: Icon(Icons.power_settings_new),
             title: Text('关闭应用'),
@@ -148,6 +166,7 @@ class _settingsState extends State<settings> {
               });
             },
           ),
+          Divider(),
         ],
       ),
     );

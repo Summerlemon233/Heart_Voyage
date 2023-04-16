@@ -29,7 +29,7 @@ class _AvatarState extends State<Avatar> {
         ),
         child: CircleAvatar(
           backgroundImage: widget.image,
-          radius: 50,
+          //radius: 50,
         ),
       ),
     );
@@ -48,7 +48,7 @@ class _change_avatarState extends State<change_avatar> {
   Widget build(BuildContext context) {
     var _readPhotoPath_avatar_var = readPhotoPath_avatar();
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -70,26 +70,39 @@ class _change_avatarState extends State<change_avatar> {
       body: Center(
         child: Column(
           children: <Widget>[
-            isSelectedAvatar
-                ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
-                : returnPet(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+            Container(
+              height: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: isSelectedAvatar
+                  ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
+                  : returnPet(),
+              margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
             ),
-            Text("${basicData["username"]}"),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    selectPhoto_avatar(context);
-                  });
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.add_a_photo),
-                    Text("更换头像"),
-                  ],
-                ))
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
+            Text("${basicData["username"]}",style: TextStyle(fontSize: 30),),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.25, 0, MediaQuery.of(context).size.width * 0.25, 0),
+              child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectPhoto_avatar(context);
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.add_a_photo),
+                      Text("更换头像"),
+                    ],
+                  )),
+            )
+
           ],
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:heart_voyage/system/common_image.dart';
 import 'package:heart_voyage/system/friend.dart';
 import 'package:heart_voyage/system/settings.dart';
+import 'package:heart_voyage/system/sign/sign.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
@@ -35,9 +36,36 @@ class _TabsState extends State<Tabs> {
   late int _currentDrawer;
 
   @override
+  void initState() {
+    loadBasicData();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      if(basicData['isLogin'] == false)
+      {
+        Get.offAll(login());
+      }
+      if(basicData['isTodaysigned'] = false)
+      {
+        Get.offAll(sign());
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _currentDrawer = basicData['isLogin'] ? 0 : 1;
     var _readPhotoPath_avatar_var = readPhotoPath_avatar();
+    /*Get.defaultDialog(
+      title: "提示",
+      content: ListView(
+        children: [
+          Container(
+            child: Text("您还没有登录，请前往登录页面登录。"),
+          )
+        ],
+      )
+    )*/
     return Scaffold(
       backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
@@ -191,7 +219,7 @@ class _drawerListLoginedState extends State<drawerListLogined> {
                 leading: Icon(Icons.logout),
                 title: Text("退出登录"),
                 onTap: () {
-                  Get.to(login());
+                  Get.offAll(login());
                 },
               ),
               Divider(),

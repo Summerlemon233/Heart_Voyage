@@ -183,7 +183,7 @@ class _loginState extends State<login> {
                   print('loginsuccess');
                   Get.snackbar('提示', '登录成功！即将返回主页面。');
                   Future.delayed(Duration(seconds: 2), () {
-                    Get.to(Tabs());
+                    Get.offAll(Tabs());
                   });
                 }
                 /*User judgeUser = new User('', _loginPassword, _loginEmail);

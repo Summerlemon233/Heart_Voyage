@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:heart_voyage/pages/tabs.dart';
 import 'package:heart_voyage/system/common_widgets.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
@@ -197,42 +198,50 @@ class _signState extends State<sign> {
                             saveBasicData();
                           });
                           Get.defaultDialog(
-                              textConfirm: "关闭",
+                              textConfirm: "前往主页面",
                               confirmTextColor: Colors.white,
                               onConfirm: () {
-                                Get.back();
+                                Get.offAll(Tabs());
                               },
                               title: "每天学点心理学",
-                              content: Column(
-                                children: [
-                                  Container(
-                                    child: Text(getDate()),
-                                    alignment: Alignment.topRight,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    child: Text("图片占位"),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    child: Text("说明占位"),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                ],
-                              ));
+                              content: Container(
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                height: MediaQuery.of(context).size.height * 0.5,
+                                child: ListView(
+                                  children: [
+                                    Container(
+                                      child: Text(getDate()),
+                                      alignment: Alignment.topRight,
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      child: Image.asset('assets/images/Psy_every_day_1.png'),
+                                    ),
+                                    Divider(),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+
+                                      child: Text("内卷的定义\n从结果来看：量的增长，质的不变。量的增长表现为时间和精力消耗的增长，质的不变表现为自身能力（知识广度和深度、学术能力、创新能力等）的停滞或与量的增长不成正比的发展。\n从动机来看：有想要超越别人的成就目标，区别于自我提升、追求卓越的掌握目标。"),
+                                      width: MediaQuery.of(context).size.width * 0.4,
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                )),
+                              )
+                              ;
                         },
                       )
                     : ElevatedButton(
                         child: Text("今天已签到，点此返回~"),
                         onPressed: () {
                           setState(() {
-                            Get.back();
+                            Get.offAll(Tabs());
                           });
                         },
                       ))

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:heart_voyage/system/change_avatar_register.dart';
 import 'package:heart_voyage/system/login.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 import 'package:apifm/apifm.dart' as Apifm;
@@ -166,9 +167,8 @@ class _registerState extends State<register> {
               //print(SharedPreferenceUtil.checkUser(userReg));
               if (/*IO_Data.checkUser(userReg)==  */ true) {
                 print('signin_success');
-                Get.snackbar('提示', '注册成功！即将返回登录页面。');
-                Future.delayed(Duration(seconds: 2), () {
-                  Get.to(login());
+                Future.delayed(Duration(milliseconds: 10), () {
+                  Get.to(change_avatar_register());
                 });
               }
             }

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:heart_voyage/pages/track/pet_change.dart';
 import 'package:heart_voyage/system/common_widgets.dart';
 
+import '../../system/userdata.dart';
+
 class my_pet extends StatefulWidget {
   const my_pet({Key? key}) : super(key: key);
 
@@ -11,6 +13,9 @@ class my_pet extends StatefulWidget {
 }
 
 class _my_petState extends State<my_pet> {
+  final List<String> names_pet = ['狗狗', '狐狐', '小狼', '兔兔'];
+  final List<String> cond_pet = ['点击选中', '已选中'];
+  var nowSelected = basicData['CurrPet'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,18 +37,25 @@ class _my_petState extends State<my_pet> {
         child: Column
           (
           children: [
+            SizedBox(height: 30),
             Container(
-              height: 280,
-              child: returnPet(),
-              /*decoration: BoxDecoration(
+              height: 200,
+              padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3, 20, MediaQuery.of(context).size.width * 0.3, 20),
+              //child: returnPet(),
+              decoration: BoxDecoration(
                 image: DecorationImage(image: returnPet().image,fit: BoxFit.fitHeight),
 
-              ),*/
+              ),
             ),
            /*Align(
               child: common_widgets.returnPet(),
                alignment: Alignment.center,
             ),*/
+            SizedBox(height: 40,),
+            Text(
+              '当前心宠：${names_pet[nowSelected]}',
+              style: TextStyle(fontSize: 25),
+            ),
             SizedBox(height: 40,),
             ElevatedButton(onPressed: (){
               setState(() {
