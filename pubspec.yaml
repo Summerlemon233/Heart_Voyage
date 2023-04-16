@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.2.0+1
+version: 0.2.1
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
@@ -36,6 +36,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  cloudbase_null_safety: ^1.1.3
   adobe_xd: ^2.0.0
   get: ^4.6.5
   shared_preferences: ^2.0.18
@@ -56,14 +57,18 @@ dependencies:
   wechat_assets_picker: ^8.4.0
   photo_manager: ^2.5.2
   wechat_camera_picker: ^3.7.0
-  package_info_plus: ^3.0.3
+  package_info_plus: ^1.4.0
   path: ^1.8.0
   image_gallery_saver: ^1.7.1
   get_storage: ^2.1.1
   csv: ^5.0.1
   image_cropper: ^3.0.1
-  fluwx_no_pay: ^3.12.2
   flutter_native_splash: ^2.2.19
+  apifm:
+    path: ./lib/system/apifm-flutter-master
+  fluttertoast: ^8.2.1
+  device_info: ^2.0.3
+  loading: ^1.0.2
 
 
 dev_dependencies:
@@ -185,6 +190,8 @@ flutter:
     - assets/audio/ZHENGNIAN_breathe.mp3
     - assets/audio/ZHENGNIAN_space.mp3
     - assets/audio/ZHENGNIAN_grape.mp3
+    - assets/audio/Summer_Pockets.mp3
+    - assets/audio/white_noise.mp3
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -197,18 +204,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Softbrush
-       fonts:
+    - family: Softbrush
+      fonts:
         - asset: assets/fonts/softbrush.ttf
-     - family: Helvetica_Neue
-       fonts:
-         - asset: assets/fonts/Helvetica_Neue.ttf
-     - family: JetBrains_Mono
-       fonts:
-         - asset: assets/fonts/JetBrains_Mono.ttf
-     - family: FZ_Kaiti
-       fonts:
-         - asset: assets/fonts/FZ_Kaiti.ttf
+    - family: Helvetica_Neue
+      fonts:
+        - asset: assets/fonts/Helvetica_Neue.ttf
+    - family: JetBrains_Mono
+      fonts:
+        - asset: assets/fonts/JetBrains_Mono.ttf
+    - family: FZ_Kaiti
+      fonts:
+        - asset: assets/fonts/FZ_Kaiti.ttf
 
 
   # fonts:

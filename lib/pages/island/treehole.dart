@@ -21,30 +21,43 @@ class _treeholeState extends State<treehole> {
           foregroundColor: Colors.white,
           title: Text('吐苦水树洞'),
         ),
-        body: Column(
+        body: ListView(
           children: [
             Container(
               child: Column(
                 children: [
-                  Text('To:树洞'),
+                  SizedBox(height: 10,),
+                  Text('To:树洞',style: TextStyle(fontSize: 20),),
                   SizedBox(
                     height: 5,
                   ),
-                  TextField(
-                    maxLines: 10,
-                    decoration: InputDecoration(
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    child: TextField(
+
+                      maxLines: 15,
+                      decoration: InputDecoration(
                         //hintText: "请输入多行文本",
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30)))),
+                            BorderRadius.all(Radius.circular(30))
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+
+                    ),
                   ),
+
                   Text(
                     '有什么不开心的事',
                     textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 20),
                   ),
                   Text(
                     '可以和树洞讲讲看呀',
                     textAlign: TextAlign.right,
+                    style: TextStyle(fontSize: 20),
                   ),
                   SizedBox(
                     height: 40,

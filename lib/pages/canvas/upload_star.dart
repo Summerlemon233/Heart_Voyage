@@ -131,13 +131,20 @@ class _upload_starState extends State<upload_star> {
   }
 
   String returnType() {
+    bool _flag = false;
     String tmp = "";
     for (int i = 1; i <= 9; i++) {
       if (isSelectedType[i] == true) {
+        _flag = true;
         tmp += intelligenceTypes[i - 1];
         tmp += " ";
       }
     }
+    if(!_flag)
+    {
+      tmp = "尚未选择";
+    }
+
     return tmp;
   }
 
@@ -214,254 +221,286 @@ class _upload_starState extends State<upload_star> {
           Positioned(
               top: MediaQuery.of(context).size.height * 0.25,
               left: MediaQuery.of(context).size.width * 0.1,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                height: MediaQuery.of(context).size.height / 1.8,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Expanded(
+              child: Opacity(
+                opacity: 0.75,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  height: MediaQuery.of(context).size.height / 1.8,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  //child: Expanded(
                   child: ListView(
                     children: [
                       Center(
-                        child: Text("上传星星"),
+                        child: Text(
+                          "上传星星",
+                          style: TextStyle(fontSize: 20),
+                        ),
                       ),
+                      Divider(),
                       TextFormField(
                         controller: titleController,
                         decoration: const InputDecoration(labelText: '任务描述'),
                       ),
-                      Expanded(
-                        child: Row(children: [
-                          Text("所用时间:${returnTime()}"),
-                          ElevatedButton(
-                              onPressed: () {
-                                Get.bottomSheet(Container(
-                                  child: Wrap(
-                                    children: <Widget>[
-                                      ListTile(
-                                          leading: Icon(Icons.access_time),
-                                          title: Text('0-10分钟'),
-                                          onTap: () {
-                                            // 设置点击事件为_mode=1
-                                            setState(() {
-                                              _mode = 1;
-                                              Get.back();
-                                            });
-                                          }),
-                                      ListTile(
-                                          leading: Icon(Icons.access_time),
-                                          title: Text('10-30分钟'),
-                                          onTap: () {
-                                            // 设置点击事件为_mode=2
-                                            setState(() {
-                                              _mode = 2;
-                                              Get.back();
-                                            });
-                                          }),
-                                      ListTile(
-                                          leading: Icon(Icons.access_time),
-                                          title: Text('30-60分钟'),
-                                          onTap: () {
-                                            // 设置点击事件为_mode=3
-                                            setState(() {
-                                              _mode = 3;
-                                              Get.back();
-                                            });
-                                          }),
-                                      ListTile(
-                                          leading: Icon(Icons.access_time),
-                                          title: Text('60分钟以上'),
-                                          onTap: () {
-                                            // 设置点击事件为_mode=4
-                                            setState(() {
-                                              _mode = 4;
-                                              Get.back();
-                                            });
-                                          })
-                                    ],
-                                  ),
-                                ));
-                              },
-                              child: Text("点我选择"))
-                        ]),
-                      ),
-                      Expanded(
+                      //Divider(),
+                      /*Expanded(
+                        child: */
+                      Container(
+                        height: 60,
                         child: Row(
-                          children: [
-                            Text("类型选择:"),
-                            Text(returnType()),
-                            ElevatedButton(
-                                onPressed: () {
-                                  Get.bottomSheet(
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.5,
-                                      child: ListView(
-                                        children: [
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+
+                                child: Text("所用时间:\n${returnTime()}",textAlign: TextAlign.center),
+                                width: 120,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Get.bottomSheet(Container(
+                                      color: Colors.white,
+                                      child: Wrap(
+                                        children: <Widget>[
                                           ListTile(
-                                            title: Text("语言智能"),
-                                            subtitle: Text("掌握并运用语言、文字的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[1] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
+                                              leading: Icon(Icons.access_time),
+                                              title: Text('0-10分钟'),
+                                              onTap: () {
+                                                // 设置点击事件为_mode=1
+                                                setState(() {
+                                                  _mode = 1;
+                                                  Get.back();
+                                                });
+                                              }),
                                           ListTile(
-                                            title: Text("逻辑数学智能"),
-                                            subtitle:
-                                                Text("逻辑思维推理、数学运算以及科学分析方面的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[2] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
+                                              leading: Icon(Icons.access_time),
+                                              title: Text('10-30分钟'),
+                                              onTap: () {
+                                                // 设置点击事件为_mode=2
+                                                setState(() {
+                                                  _mode = 2;
+                                                  Get.back();
+                                                });
+                                              }),
                                           ListTile(
-                                            title: Text("音乐智能"),
-                                            subtitle:
-                                                Text("感受、欣赏、演奏、歌唱、创作音乐的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[3] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
+                                              leading: Icon(Icons.access_time),
+                                              title: Text('30-60分钟'),
+                                              onTap: () {
+                                                // 设置点击事件为_mode=3
+                                                setState(() {
+                                                  _mode = 3;
+                                                  Get.back();
+                                                });
+                                              }),
                                           ListTile(
-                                            title: Text("肢体运作智能"),
-                                            subtitle: Text(
-                                                "运用全身或身体的某一部分，/n包括嘴和手，解决问题或创造产品的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[4] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
-                                          ListTile(
-                                            title: Text("人际智能"),
-                                            subtitle: Text("了解他人、与人合作的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[5] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
-                                          ListTile(
-                                            title: Text("空间智能"),
-                                            subtitle: Text(
-                                                "针对所观察的事物，/n在脑海中形成一个模型或图案从而加以运用的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[6] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
-                                          ListTile(
-                                            title: Text("内省智能"),
-                                            subtitle:
-                                                Text("深入并理解自己内心世界并用以指导自己行为的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[7] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
-                                          ListTile(
-                                            title: Text("自然探索智能"),
-                                            subtitle: Text(
-                                                "能认识植物、动物和其它自然环境(如云和石头)的能力"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[8] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
-                                          ListTile(
-                                            title: Text("存在智能"),
-                                            subtitle: Text(
-                                                "人们表现出的对生命、死亡和终极现实提出问题，/n并思考这些问题的倾向性"),
-                                            onTap: () {
-                                              setState(() {
-                                                isSelectedType[9] = true;
-                                              });
-                                            },
-                                          ),
-                                          Divider(),
+                                              leading: Icon(Icons.access_time),
+                                              title: Text('60分钟以上'),
+                                              onTap: () {
+                                                // 设置点击事件为_mode=4
+                                                setState(() {
+                                                  _mode = 4;
+                                                  Get.back();
+                                                });
+                                              })
                                         ],
                                       ),
+                                    ));
+                                  },
+                                  child: Text("点我选择"))
+                            ]),
+                      ),
+
+                      Divider(),
+                      //),
+                      //Expanded(
+                      //child:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 120,
+                            child: Text("类型选择:\n${returnType()}",textAlign: TextAlign.center,),
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                Get.bottomSheet(
+                                  Container(
+                                    color: Colors.white,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    child: ListView(
+                                      children: [
+                                        ListTile(
+                                          title: Text("语言智能"),
+                                          subtitle: Text("掌握并运用语言、文字的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[1] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("逻辑数学智能"),
+                                          subtitle:
+                                              Text("逻辑思维推理、数学运算以及科学分析方面的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[2] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("音乐智能"),
+                                          subtitle: Text("感受、欣赏、演奏、歌唱、创作音乐的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[3] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("肢体运作智能"),
+                                          subtitle: Text(
+                                              "运用全身或身体的某一部分，\n包括嘴和手，解决问题或创造产品的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[4] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("人际智能"),
+                                          subtitle: Text("了解他人、与人合作的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[5] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("空间智能"),
+                                          subtitle: Text(
+                                              "针对所观察的事物，\n在脑海中形成一个模型或图案从而加以运用的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[6] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("内省智能"),
+                                          subtitle:
+                                              Text("深入并理解自己内心世界并用以指导自己行为的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[7] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("自然探索智能"),
+                                          subtitle:
+                                              Text("能认识植物、动物和其它自然环境(如云和石头)的能力"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[8] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text("存在智能"),
+                                          subtitle: Text(
+                                              "人们表现出的对生命、死亡和终极现实提出问题，\n并思考这些问题的倾向性"),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[9] = true;
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                      ],
                                     ),
-                                  );
-                                },
-                                child: Text("点我选择")),
-                          ],
-                        ),
+                                  ),
+                                );
+                              },
+                              child: Text("点我选择")),
+                        ],
+                        //),
                       ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Text("点击上传图片："),
-                            Container(
-                                child: selectedAsset == null
-                                    ? ElevatedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            selectPhoto(context,
-                                                basicData['star_case']);
-                                          });
-                                        },
-                                        child: Text("点击选择图片"))
-                                    : Expanded(
-                                        /*height: MediaQuery.of(context).size.height * 0.2,
-                                width: MediaQuery.of(context).size.height * 0.4,*/
-                                        child: GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            selectPhoto(context,
-                                                basicData["star_case"]);
-                                          });
-                                        },
-                                        child: AssetEntityImage(selectedAsset!,
-                                            isOriginal: true),
-                                      )))
-                          ],
-                        ),
+                      /*Expanded(
+                        child: */
+                      Divider(),
+                      Container(
+                        child: Text("上传图片"),
+                        alignment: Alignment.center,
                       ),
-                      isSaved == false
-                          ? ElevatedButton(
-                              onPressed: () {
-                                if (selectedAsset == null) {
-                                  Get.snackbar('提示', '您还未选择图片，请重新选择。',
-                                      duration: Duration(milliseconds: 800));
-                                } else {
-                                  setState(() {
-                                    saveStarData();
-                                    //storeStarDataSingle(basicData["star_case"] - 1);
-                                    //storeStarData();
-                                    saveBasicData();
-                                    Get.snackbar('提示', '保存成功',
+                      Divider(),
+                      Container(
+                          height: 130,
+                          child: selectedAsset == null
+                              ? TextButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      selectPhoto(
+                                          context, basicData['star_case']);
+                                    });
+                                  },
+                                  child: Text("点我选择图片"))
+                              : GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectPhoto(
+                                          context, basicData["star_case"]);
+                                    });
+                                  },
+                                  child: AssetEntityImage(selectedAsset!,
+                                      isOriginal: true),
+                                )),
+
+                      //),
+                      Divider(),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: isSaved == false
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  if (selectedAsset == null) {
+                                    Get.snackbar('提示', '您还未选择图片，请重新选择。',
                                         duration: Duration(milliseconds: 800));
-                                  });
-                                }
-                              },
-                              child: Text("保存"))
-                          : ElevatedButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              child: Text("返回")),
+                                  } else {
+                                    setState(() {
+                                      saveStarData();
+                                      //storeStarDataSingle(basicData["star_case"] - 1);
+                                      //storeStarData();
+                                      saveBasicData();
+                                      Get.snackbar('提示', '保存成功',
+                                          duration:
+                                              Duration(milliseconds: 800));
+                                    });
+                                  }
+                                },
+                                child: Text("保存"))
+                            : ElevatedButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                child: Text("返回")),
+                      )
                     ],
                   ),
                 ),
-              )),
+              )
+
+              //)
+              ),
           /*Positioned(
               top: MediaQuery.of(context).size.height / 1.35,
               left: MediaQuery.of(context).size.width / 5,

@@ -1,3 +1,4 @@
+import 'package:cloudbase_null_safety/cloudbase_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/tabs.dart';
@@ -28,7 +29,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -68,6 +69,8 @@ class _loginState extends State<login> {
         width: 270,
         child: ElevatedButton(
           style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+            backgroundColor: MaterialStateProperty.all(Color.fromRGBO(45, 73, 104, 1),),
             // 设置圆角
             shape: MaterialStateProperty.all(
                 const StadiumBorder(side: BorderSide(style: BorderStyle.none))),
@@ -76,7 +79,7 @@ class _loginState extends State<login> {
           ),
           child: Text(
             '注册',
-            style: Theme.of(context).primaryTextTheme.headline5,
+            style: Theme.of(context).primaryTextTheme.headlineSmall,
           ),
           onPressed: () {
             setState(() {
@@ -96,16 +99,37 @@ class _loginState extends State<login> {
                 return IconButton(
                     icon: Icon(item['icon'],
                         color: Theme.of(context).iconTheme.color),
-                    onPressed: () {
+                    onPressed: () async {
+                      /*CloudBaseCore core = CloudBaseCore.init({
+                        // 填写你的云开发 env
+                        'env': 'heart-voyage-1gmjykfg0f02ddb9',
+                        'appAccess': {'key': '07a674466f148dc8e2443ec330589995', 'version': '0.2.1'}
+                      });
+
+// 获取登录对象
+                      CloudBaseAuth auth = CloudBaseAuth(core);
+
+// 获取登录状态
+                      CloudBaseAuthState? authState = await auth.getAuthState();
+
+// 唤起微信登录
+                      if (authState == null) {
+                        await auth.signInByWx(wxAppId, wxUniLink).then((success) {
+// 登录成功
+                        }).catchError((err) {
+// 登录失败
+                        });
+                      }*/
                       //TODO: 第三方登录方法
-                      ScaffoldMessenger.of(context).showSnackBar(
+                      /*ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text('${item['title']}登录'),
                             action: SnackBarAction(
                               label: '取消',
                               onPressed: () {},
-                            )),
-                      );
+                            )
+                        ),
+                      );*/
                     });
               }))
           .toList(),
@@ -128,11 +152,14 @@ class _loginState extends State<login> {
         width: 270,
         child: ElevatedButton(
           style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(45, 73, 104, 1),),
               // 设置圆角
               shape: MaterialStateProperty.all(const StadiumBorder(
+
                   side: BorderSide(style: BorderStyle.none)))),
           child:
-              Text('登录', style: Theme.of(context).primaryTextTheme.headline5),
+              Text('登录', style: Theme.of(context).primaryTextTheme.headlineSmall,),
           onPressed: () {
             setState(() {
               // 表单校验通过才会继续执行
@@ -239,7 +266,9 @@ class _loginState extends State<login> {
       validator: (v) {
         var emailReg = RegExp(
             r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
-        if (!emailReg.hasMatch(v!)) {
+        if (true
+            //!emailReg.hasMatch(v!)
+            ) {
           return '请输入正确的邮箱地址';
         }
       },

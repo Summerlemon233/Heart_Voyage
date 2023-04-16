@@ -28,7 +28,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
           album: "正念静坐",
           title: "正念",
           artwork:
-          "https://media.wnyc.org/i/1400/1400/l/80/1/ScienceFriday_WNYCStudios_1400.jpg",
+          "https://cdnimg103.lizhi.fm/audio_cover/2018/08/06/2685062117539402759_320x320.jpg",
         ),
       ),
   ]);
@@ -115,40 +115,57 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        fontFamily: 'Softbrush',
+        useMaterial3: true,
+        primarySwatch: Colors.blue,
+      ),
       debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: _scaffoldMessengerKey,
       home: Scaffold(
+        backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+          foregroundColor: Colors.white,
+          title: Text("正念"),
+          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: ()
+          {
+            setState(() {
+              Navigator.pop(context);
+            });
+          },),
+        ),
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                child: StreamBuilder<SequenceState?>(
-                  stream: _player.sequenceStateStream,
-                  builder: (context, snapshot) {
-                    final state = snapshot.data;
-                    if (state?.sequence.isEmpty ?? true) {
-                      return const SizedBox();
-                    }
-                    final metadata = state!.currentSource!.tag as AudioMetadata;
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                            Center(child: Image.network(metadata.artwork)),
-                          ),
-                        ),
-                        Text(metadata.album,
-                            style: Theme.of(context).textTheme.headline6),
-                        Text(metadata.title),
-                      ],
-                    );
-                  },
-                ),
+              StreamBuilder<SequenceState?>(
+                stream: _player.sequenceStateStream,
+                builder: (context, snapshot) {
+                  final state = snapshot.data;
+                  if (state?.sequence.isEmpty ?? true) {
+                    return const SizedBox();
+                  }
+                  final metadata = state!.currentSource!.tag as AudioMetadata;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+
+                        padding: const EdgeInsets.all(8.0),
+                        child:Image.network(metadata.artwork,fit: BoxFit.cover,),
+                        height: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+
+                      Text(metadata.album,
+                          style: Theme.of(context).textTheme.headline6),
+                      Text(metadata.title),
+                    ],
+                  );
+                },
               ),
               ControlButtons(_player),
               StreamBuilder<PositionData>(
@@ -168,8 +185,9 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
               ),
               const SizedBox(height: 8.0),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  StreamBuilder<LoopMode>(
+                  /*StreamBuilder<LoopMode>(
                     stream: _player.loopModeStream,
                     builder: (context, snapshot) {
                       final loopMode = snapshot.data ?? LoopMode.off;
@@ -193,20 +211,23 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
                         },
                       );
                     },
-                  ),
+                  ),*/
                   SizedBox(height: 8,),
                   ElevatedButton(onPressed: (){
-                    common_widgets.returnDialog(10);
+                    setState(() {
+                      common_widgets.returnDialog(10);
+                      //Navigator.of(context).pop();
+                    });
                   }, child: Text("我已完成练习")),
                   SizedBox(height: 8,),
-                  Expanded(
+                  /*Expanded(
                     child: Text(
-                      "Playlist",
+                      "",
                       style: Theme.of(context).textTheme.headline6,
                       textAlign: TextAlign.center,
                     ),
-                  ),
-                  StreamBuilder<bool>(
+                  ),*/
+                  /*StreamBuilder<bool>(
                     stream: _player.shuffleModeEnabledStream,
                     builder: (context, snapshot) {
                       final shuffleModeEnabled = snapshot.data ?? false;
@@ -223,53 +244,53 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
                         },
                       );
                     },
-                  ),
+                  ),*/
                 ],
               ),
-              SizedBox(
-                height: 240.0,
-                child: StreamBuilder<SequenceState?>(
-                  stream: _player.sequenceStateStream,
-                  builder: (context, snapshot) {
-                    final state = snapshot.data;
-                    final sequence = state?.sequence ?? [];
-                    return ReorderableListView(
-                      onReorder: (int oldIndex, int newIndex) {
-                        if (oldIndex < newIndex) newIndex--;
-                        _playlist.move(oldIndex, newIndex);
-                      },
-                      children: [
-                        for (var i = 0; i < sequence.length; i++)
-                          Dismissible(
-                            key: ValueKey(sequence[i]),
-                            background: Container(
-                              color: Colors.redAccent,
-                              alignment: Alignment.centerRight,
-                              child: const Padding(
-                                padding: EdgeInsets.only(right: 8.0),
-                                child: Icon(Icons.delete, color: Colors.white),
-                              ),
-                            ),
-                            onDismissed: (dismissDirection) {
-                              _playlist.removeAt(i);
-                            },
-                            child: Material(
-                              color: i == state!.currentIndex
-                                  ? Colors.grey.shade300
-                                  : null,
-                              child: ListTile(
-                                title: Text(sequence[i].tag.title as String),
-                                onTap: () {
-                                  _player.seek(Duration.zero, index: i);
-                                },
-                              ),
-                            ),
-                          ),
-                      ],
-                    );
-                  },
-                ),
-              ),
+              /*SizedBox(
+        height: 240.0,
+        child: StreamBuilder<SequenceState?>(
+          stream: _player.sequenceStateStream,
+          builder: (context, snapshot) {
+            final state = snapshot.data;
+            final sequence = state?.sequence ?? [];
+            return ReorderableListView(
+              onReorder: (int oldIndex, int newIndex) {
+                if (oldIndex < newIndex) newIndex--;
+                _playlist.move(oldIndex, newIndex);
+              },
+              children: [
+                for (var i = 0; i < sequence.length; i++)
+                  Dismissible(
+                    key: ValueKey(sequence[i]),
+                    background: Container(
+                      color: Colors.redAccent,
+                      alignment: Alignment.centerRight,
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Icon(Icons.delete, color: Colors.white),
+                      ),
+                    ),
+                    onDismissed: (dismissDirection) {
+                      _playlist.removeAt(i);
+                    },
+                    child: Material(
+                      color: i == state!.currentIndex
+                          ? Colors.grey.shade300
+                          : null,
+                      child: ListTile(
+                        title: Text(sequence[i].tag.title as String),
+                        onTap: () {
+                          _player.seek(Duration.zero, index: i);
+                        },
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
+      ),*/
             ],
           ),
         ),

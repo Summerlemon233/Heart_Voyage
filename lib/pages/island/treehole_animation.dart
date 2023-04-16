@@ -97,7 +97,8 @@ class _treehole_animationState extends State<treehole_animation>
                 child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        Get.to(Tabs());
+                        Get.back();
+                        Get.back();
                       });
                     },
                     child: Text("点我返回"))),

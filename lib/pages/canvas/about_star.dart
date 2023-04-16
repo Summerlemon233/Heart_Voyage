@@ -105,8 +105,9 @@ class _about_starState extends State<about_star> {
                     fontSize: 15,
                   ),
                 ),
-                top: MediaQuery.of(context).size.height / 1.5,
-                left: MediaQuery.of(context).size.width / 10,
+                top: MediaQuery.of(context).size.height * 0.62,
+                left: MediaQuery.of(context).size.width * 0.05,
+                right: MediaQuery.of(context).size.width * 0.05,
               ),
               Positioned(
                   top: MediaQuery.of(context).size.height / 1.35,

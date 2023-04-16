@@ -205,8 +205,8 @@ class _my_starState extends State<my_star> {
           //Text("1$photoPath"),
           //Text("2$title_star"),
           //Text("3${GetStorage().read('photoPath')}"),
-          Text("4${basicData}"),
-          Text("5${PhotoPath_avatar}"),
+          //Text("4${basicData}"),
+          //Text("5${PhotoPath_avatar}"),
           /*Container(
             height: 10,
             decoration: BoxDecoration(
@@ -223,7 +223,7 @@ class _my_starState extends State<my_star> {
                 });
               },
               child: Text("photoPath")),*/
-          basicData["star_case"] == 0
+          basicData["star_case"] == 0 || basicData["star_case"] ==null || photoPath.length == 0
               ? Center(
                   child: Text("点击刷新键以查看记录"),
                 )

@@ -26,63 +26,34 @@ class _anxiety_testState extends State<anxiety_test> {
           SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {
-              Get.to(overall_judge());
-            },
-            child: Center(
-              child: Text(
-                '焦虑水平总体评价',
-                style: TextStyle(
-                  fontSize: 32,
+          Container(
+            padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.08, 0, MediaQuery.of(context).size.width * 0.08, 0),
+            child: ElevatedButton(
+              onPressed: () {
+                Get.to(overall_judge());
+              },
+              child: Center(
+                child: Text(
+                  '焦虑水平总体评价',
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
                 ),
               ),
-            ),
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
-              foregroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
-              minimumSize: MaterialStateProperty.all(Size(
-                  MediaQuery.of(context).size.width * 0.8,
-                  MediaQuery.of(context).size.height * 0.1)),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  side: BorderSide(
-                      color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Get.to(refined_judge());
-            },
-            child: Center(
-              child: Text(
-                '焦虑水平细化评价',
-                style: TextStyle(
-                  fontSize: 32,
-                ),
-              ),
-            ),
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
-              foregroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
-              minimumSize: MaterialStateProperty.all(Size(
-                  MediaQuery.of(context).size.width * 0.8,
-                  MediaQuery.of(context).size.height * 0.1)),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  side: BorderSide(
-                      color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                foregroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                minimumSize: MaterialStateProperty.all(Size(
+                    MediaQuery.of(context).size.width * 0.8,
+                    MediaQuery.of(context).size.height * 0.1)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: BorderSide(
+                        color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+                  ),
                 ),
               ),
             ),
@@ -90,36 +61,74 @@ class _anxiety_testState extends State<anxiety_test> {
           SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {
-              Get.to(anxiety_test());
-            },
-            child: Center(
-              widthFactor: MediaQuery.of(context).size.width * 0.8,
-              child: Text(
-                '焦虑的影响测试',
-                style: TextStyle(
-                  fontSize: 32,
+          Container(
+            padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.08, 0, MediaQuery.of(context).size.width * 0.08, 0),
+            child: ElevatedButton(
+              onPressed: () {
+                Get.to(refined_judge());
+              },
+              child: Center(
+                child: Text(
+                  '焦虑水平细化评价',
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
                 ),
               ),
-            ),
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
-              foregroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
-              minimumSize: MaterialStateProperty.all(Size(
-                  MediaQuery.of(context).size.width * 0.8,
-                  MediaQuery.of(context).size.height * 0.1)),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  side: BorderSide(
-                      color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                foregroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                minimumSize: MaterialStateProperty.all(Size(
+                    MediaQuery.of(context).size.width * 0.8,
+                    MediaQuery.of(context).size.height * 0.1)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: BorderSide(
+                        color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+                  ),
                 ),
               ),
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.08, 0, MediaQuery.of(context).size.width * 0.08, 0),
+            child: ElevatedButton(
+              onPressed: () {
+                Get.to(anxiety_test());
+              },
+              child: Center(
+                widthFactor: MediaQuery.of(context).size.width * 0.8,
+                child: Text(
+                  '焦虑的影响测试',
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
+                ),
+              ),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                foregroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                minimumSize: MaterialStateProperty.all(Size(
+                    MediaQuery.of(context).size.width * 0.8,
+                    MediaQuery.of(context).size.height * 0.1)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: BorderSide(
+                        color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       )),
     );

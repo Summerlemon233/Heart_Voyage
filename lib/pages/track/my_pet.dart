@@ -35,7 +35,7 @@ class _my_petState extends State<my_pet> {
             Container(
               height: 280,
               decoration: BoxDecoration(
-                image: DecorationImage(image: common_widgets.returnPet()!.image,fit: BoxFit.fitHeight),
+                image: DecorationImage(image: returnPet().image,fit: BoxFit.fitHeight),
 
               ),
             ),

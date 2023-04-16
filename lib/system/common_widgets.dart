@@ -46,6 +46,20 @@ class mapListTile extends StatelessWidget {
 
   }
 }
+Image returnPet() {
+  switch (basicData['CurrPet']) {
+    case 0:
+      return Image(image: AssetImage('assets/images/pet0.png'));
+    case 1:
+      return Image(image: AssetImage('assets/images/pet1.png'));
+    case 2:
+      return Image(image: AssetImage('assets/images/pet2.png'));
+    case 3:
+      return Image(image: AssetImage('assets/images/pet3.png'));
+    default:
+      return Image(image: AssetImage('assets/images/pet0.png'));
+  }
+}
 
 
 
@@ -74,22 +88,27 @@ class common_widgets {
               height: 20,
             ),
             Text("总成长值：${basicData['score']}分"),
+            ElevatedButton(onPressed: (){
+              Get.back();
+              Get.back();
+            }, child: Text("点我退出"))
           ],
         ));
   }
 
-  static Image? returnPet() {
-    switch (basicData['CurrPet']) {
-      case 0:
-        return Image(image: AssetImage('assets/images/pet0.png'));
-      case 1:
-        return Image(image: AssetImage('assets/images/pet1.png'));
-      case 2:
-        return Image(image: AssetImage('assets/images/pet2.png'));
-      case 3:
-        return Image(image: AssetImage('assets/images/pet3.png'));
-      default:
-        return Image(image: AssetImage('assets/images/pet0.png'));
-    }
+
+}
+
+class test extends StatefulWidget {
+  const test({Key? key}) : super(key: key);
+
+  @override
+  State<test> createState() => _testState();
+}
+
+class _testState extends State<test> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

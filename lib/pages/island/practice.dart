@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/island/ZHENGNIAN.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/white_noise.dart';
 import 'package:heart_voyage/pages/island/sports.dart';
 
 import '../tabs/sailCanvas.dart';
 import '../tabs/sailIsland.dart';
 import '../tabs/sailTrack.dart';
 import '../tabs/seekHeart.dart';
+import 'ZHENGNIAN/pure_music.dart';
 
 class practice extends StatefulWidget {
   const practice({Key? key}) : super(key: key);
@@ -27,11 +29,7 @@ class _practiceState extends State<practice> {
       const practicePage(),
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("情绪练习"),
-      ),
-      body: const practicePage(),
+    return practicePage();
       /*_pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -61,7 +59,7 @@ class _practiceState extends State<practice> {
         type: BottomNavigationBarType.fixed,
       ),
     );*/
-    );
+
   }
 }
 
@@ -80,6 +78,7 @@ class _practicePageState extends State<practicePage> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
+        title: Text("情绪调节"),
       ),
       body: ListView(
         children: [
@@ -114,7 +113,7 @@ class _practicePageState extends State<practicePage> {
             onTap: () => Get.to(sports()),
           ),
           const Divider(),
-          const ListTile(
+          ListTile(
             leading: SizedBox(
               height: 70,
               width: 70,
@@ -124,7 +123,8 @@ class _practicePageState extends State<practicePage> {
               ),
             ),
             title: Text('静听一段纯音乐'),
-            subtitle: Text('可获得的成长值：5分\n所需时长：3分20秒'),
+            onTap: () => Get.to(pure_music()),
+            subtitle: Text('可获得的成长值：5分\n所需时长：4分00秒'),
           ),
           const Divider(),
           const ListTile(
@@ -140,7 +140,11 @@ class _practicePageState extends State<practicePage> {
             subtitle: Text('可获得的成长值：5分\n所需时长：7分35秒'),
           ),
           const Divider(),
-          const ListTile(
+          ListTile(
+            onTap: ()
+            {
+              Get.to(white_noise());
+            },
             leading: SizedBox(
               height: 70,
               width: 70,
@@ -150,7 +154,7 @@ class _practicePageState extends State<practicePage> {
               ),
             ),
             title: Text('静听一段白噪音'),
-            subtitle: Text('可获得的成长值：5分\n所需时长：2分55秒'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：7分20秒'),
           ),
           const Divider(),
         ],

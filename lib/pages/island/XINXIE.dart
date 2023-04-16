@@ -32,15 +32,15 @@ class _XINXIEState extends State<XINXIE> {
                   "北京大学学生心理协会（以下简称“北大心协”）"
                   "依托于北京大学学生心理健康教育与咨询中心，借助其丰富而优质的专业教师资源，"
                   "开展各种丰富精彩的专题活动，为心理学爱好者提供实践与体验的平台。"
-            ,style: TextStyle(fontSize: 18,color: Color.fromRGBO(215, 169, 83, 1)),),
+            ,style: TextStyle(fontSize: 20,color: Color.fromRGBO(215, 169, 83, 1)),),
         ),
         decoration: BoxDecoration(
-            border: Border.all(
+            /*border: Border.all(
               color: Colors.brown,
               width: 3.0,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),*/
       ),
-    );
+    ));
   }
 }

@@ -47,19 +47,19 @@ class _mood_cache_newState extends State<mood_cache_new> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+        backgroundColor: Color.fromRGBO(229, 220, 203, 1),
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(45, 73, 104, 1),
           foregroundColor: Colors.white,
           title: Text('新的积极日记'),
         ),
-        body: Column(
+        body: ListView(
           children: [
             Expanded(
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    //height: MediaQuery.of(context).size.height * 0.6,
                     child: Column(
                       children: [
                         TextField(
@@ -79,13 +79,16 @@ class _mood_cache_newState extends State<mood_cache_new> {
                               hintText: "请输入多行文本",
                               border: OutlineInputBorder()),
                         ),
-                        Expanded(
+                        Container(
+                          height: 200,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text("点击上传图片："),
                               Container(
+                                alignment: Alignment.center,
                                   child: selectedAsset_mood == null
-                                      ? ElevatedButton(
+                                      ? TextButton(
                                           onPressed: () {
                                             setState(() {
                                               selectPhoto_mood(context,
@@ -113,7 +116,7 @@ class _mood_cache_newState extends State<mood_cache_new> {
                         isSaved_mood == false
                             ? ElevatedButton(
                                 onPressed: () {
-                                  if (selectedAsset == null) {
+                                  if (selectedAsset_mood == null) {
                                     Get.snackbar('提示', '您还未选择图片，请重新选择。',
                                         duration: Duration(milliseconds: 800));
                                   }
@@ -121,13 +124,16 @@ class _mood_cache_newState extends State<mood_cache_new> {
                                   setState(() {
                                     saveMoodData();
                                     saveBasicData();
+
                                     Get.snackbar('提示', '保存成功~',
                                         duration: Duration(milliseconds: 800));
                                   });}
                                 },
                                 child: Text('保存'))
                             : ElevatedButton(
-                                onPressed: () {
+                                onPressed: ()
+                                {
+                                  selectedAsset_mood == null;
                                   Get.back();
                                 },
                                 child: Text('返回'))

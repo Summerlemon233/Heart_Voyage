@@ -113,7 +113,11 @@ class _practicePageState extends State<practicePage> {
           onTap: () => Get.to(ZHENGNIAN_space()),
         ),
         const Divider(),
-        Text('注：该正念系列音频由北京大学心理与认知科学学院刘兴华研究员课题组提供'),
+        Container(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Text('注：该正念系列音频由北京大学心理与认知科学学院刘兴华研究员课题组提供'),
+        )
+
       ],
     );
   }

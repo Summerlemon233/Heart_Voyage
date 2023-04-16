@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/system/login.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
+import 'package:apifm/apifm.dart' as Apifm;
 
 import './userdata.dart';
 
@@ -13,10 +14,14 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
+  late Map _temp;
+  late var _validateKey;
+  late var _validateUrl;
   TextEditingController _controllerMail = new TextEditingController();
   TextEditingController _controllerName = new TextEditingController();
   TextEditingController _controllerPwd = new TextEditingController();
   TextEditingController _controllerRePwd = new TextEditingController();
+  TextEditingController codeController = new TextEditingController();
   final GlobalKey _formKey = GlobalKey<FormState>();
   String? _emailReg, _passwordReg, _userNameReg;
 
@@ -28,6 +33,17 @@ class _registerState extends State<register> {
       "icon": Icons.wechat,
     },
   ];
+  @override
+  void initState() {
+    graphValidationInit();
+    // TODO: implement initState
+    super.initState();
+  }
+  void graphValidationInit(){
+    _temp = Apifm.graphValidateCodeUrl();
+    _validateKey = _temp["key"];
+    _validateUrl = _temp["imageUrl"];
+  }
 
   /*bool confirm_if_unique() //async
   {
@@ -50,7 +66,7 @@ class _registerState extends State<register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -70,11 +86,13 @@ class _registerState extends State<register> {
             const SizedBox(
               height: 30,
             ),
-            buildEmailTextField(), // 输入邮箱
-            const SizedBox(height: 30),
+
             buildPasswordTextField(context), // 输入密码
             const SizedBox(height: 30),
             buildConfirmPasswordTextField(context), // 确认密码
+            buildMobileTextField(), // 输入手机
+
+            const SizedBox(height: 30),
             const SizedBox(height: 60),
 
             const SizedBox(height: 40),
@@ -114,14 +132,15 @@ class _registerState extends State<register> {
         width: 270,
         child: ElevatedButton(
           style: ButtonStyle(
-            // 设置圆角
-            shape: MaterialStateProperty.all(
-                const StadiumBorder(side: BorderSide(style: BorderStyle.none))),
-            //backgroundColor: MaterialStateProperty.all(Colors.white),
-            //foregroundColor: MaterialStateProperty.all(Colors.blue),
-          ),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(45, 73, 104, 1),),
+              // 设置圆角
+              shape: MaterialStateProperty.all(const StadiumBorder(
+
+                  side: BorderSide(style: BorderStyle.none)))),
           child:
-              Text('注册', style: Theme.of(context).primaryTextTheme.headline5),
+          Text('注册', style: Theme.of(context).primaryTextTheme.headlineSmall,),
+
           onPressed: () {
             _emailReg = _controllerMail.text;
             _userNameReg = _controllerName.text;
@@ -226,23 +245,23 @@ class _registerState extends State<register> {
             )));
   }
 
-  Widget buildEmailTextField() {
+  Widget buildMobileTextField() {
     return TextFormField(
       style: TextStyle(
         fontFamily: "Helvetica_Neue",
       ),
       controller: _controllerMail,
-      decoration: const InputDecoration(labelText: '邮箱地址',
+      decoration: const InputDecoration(labelText: '手机号',
         border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),),
       validator: (v) {
-        var emailReg = RegExp(
-            r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
-        if (!emailReg.hasMatch(v!)) {
-          return '请输入正确的邮箱地址';
+        var mobileReg = RegExp(
+            "^((13[0-9])|(15[^4])|(166)|(17[0-8])|(18[0-9])|(19[8-9])|(147,145))\\d{8}\$");
+        if (!mobileReg.hasMatch(v!)) {
+          return '请输入正确的手机号码';
         }
         return null;
       },
-      onSaved: (v) => _emailReg = v!,
+      //onSaved: (v) => _emailReg = v!,
     );
   }
 
@@ -263,6 +282,8 @@ class _registerState extends State<register> {
       onSaved: (v) => _userNameReg = v!,
     );
   }
+
+
 }
 
 //   TextEditingController _controllerMail = new TextEditingController();
@@ -279,3 +300,5 @@ class _registerState extends State<register> {
 //         Navigator.pop(context);//返回到登陆页面
 //       }
 //   }
+
+

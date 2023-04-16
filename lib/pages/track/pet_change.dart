@@ -28,16 +28,24 @@ class _pet_changeState extends State<pet_change> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 20,),
-            Text('当前心宠：${names_pet[nowSelected]}',style: TextStyle(fontSize: 25),),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              '当前心宠：${names_pet[nowSelected]}',
+              style: TextStyle(fontSize: 25),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   FillImageCard(
-
                     imageProvider: AssetImage('assets/images/pet0.png'),
+                    heightImage: 200,
+                    //contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     tags: [
                       RawChip(
                         label: Text('可选'),
@@ -65,6 +73,7 @@ class _pet_changeState extends State<pet_change> {
                   ),
                   FillImageCard(
                     imageProvider: AssetImage('assets/images/pet1.png'),
+                    heightImage: 200,
                     tags: [
                       RawChip(
                         label: Text('可选'),
@@ -92,6 +101,7 @@ class _pet_changeState extends State<pet_change> {
                   ),
                   FillImageCard(
                     imageProvider: AssetImage('assets/images/pet2.png'),
+                    heightImage: 200,
                     tags: [
                       RawChip(
                         label: Text('可选'),
@@ -119,6 +129,7 @@ class _pet_changeState extends State<pet_change> {
                   ),
                   FillImageCard(
                     imageProvider: AssetImage('assets/images/pet3.png'),
+                    heightImage: 200,
                     tags: [
                       RawChip(
                         label: Text('可选'),

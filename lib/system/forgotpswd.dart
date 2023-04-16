@@ -149,7 +149,6 @@ class _forgotpwsdState extends State<forgotpwsd> {
                 color: _eyeColor,
               ),
               onPressed: () {
-                // 修改 state 内部变量, 且需要界面内容更新, 需要使用 setState()
                 setState(() {
                   _isObscure = !_isObscure;
                   _eyeColor = (_isObscure

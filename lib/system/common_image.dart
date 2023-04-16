@@ -50,7 +50,6 @@ Future<void> savePhotoPath_mood(List<String> filePaths) async {
 }
 
 Future<void> readPhotoPath_mood() async {
-  //photoPath = [];
   final filePath = GetStorage().read('photoPath_mood');
   final File file = File(filePath);
   final content = await file.readAsString();

@@ -11,7 +11,7 @@ class _about_usState extends State<about_us> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
           backgroundColor: Color.fromRGBO(45, 73, 104, 1),
           foregroundColor: Colors.white,
@@ -38,7 +38,7 @@ class _about_usState extends State<about_us> {
                           style: TextStyle(fontSize: 30),
                         ),
                         Text(
-                          "Version 0.2.0 Beta \n2023/03/24 Offline",
+                          "Version 0.2.2 Beta \n2023/04/16 Offline",
                           style: TextStyle(
                               fontSize: 20, fontFamily: 'Helvetica_Neue'),
                         ),

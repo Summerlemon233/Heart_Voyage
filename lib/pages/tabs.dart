@@ -8,6 +8,7 @@ import 'package:heart_voyage/system/settings.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
+import '../system/common_widgets.dart';
 import './tabs/sailCanvas.dart';
 import './tabs/sailIsland.dart';
 import './tabs/sailTrack.dart';
@@ -124,8 +125,8 @@ class _drawerListLoginedState extends State<drawerListLogined> {
             basicData['email'],
             style: TextStyle(color: Colors.black),
           ),
-          currentAccountPicture: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/default_user.jpg'),
+          currentAccountPicture: CircleAvatar(
+            child: returnPet(),
           ),
           onDetailsPressed: () {},
           decoration: BoxDecoration(
@@ -235,9 +236,9 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
             style: TextStyle(color: Colors.black),
           ),
           currentAccountPicture: CircleAvatar(
-              backgroundImage: _isSelectedAvatar
+              child: _isSelectedAvatar
                   ? imageFromFile(PhotoPath_avatar[0]).image
-                  : AssetImage('assets/images/pet0.png')),
+                  : returnPet(),),
           onDetailsPressed: () {},
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -275,7 +276,7 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
                   });
                 },
               ),
-             /* Divider(),
+              /*Divider(),
               SwitchListTile(
                 secondary: Icon(Icons.nightlight_round),
                 title: Text('夜间模式'),
@@ -316,4 +317,6 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
       ],
     );
   }
+
+  returnPet() {}
 }

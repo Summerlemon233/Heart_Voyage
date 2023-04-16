@@ -31,6 +31,14 @@
             </intent-filter>
         </activity>
         <activity
+                android:name=".wxapi.WXEntryActivity"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                android:exported="true"
+                android:taskAffinity="net.sourceforge.simcpux"
+                android:launchMode="singleTask"
+        >
+        </activity>
+        <activity
                 android:name="com.yalantis.ucrop.UCropActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>

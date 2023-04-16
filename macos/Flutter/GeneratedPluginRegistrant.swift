@@ -8,7 +8,7 @@ import Foundation
 import audio_session
 import audioplayers_darwin
 import just_audio
-import package_info_plus
+import package_info_plus_macos
 import path_provider_foundation
 import photo_manager
 import shared_preferences_foundation

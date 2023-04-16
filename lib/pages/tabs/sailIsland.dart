@@ -4,6 +4,9 @@ import 'package:heart_voyage/pages/island/mood_cache.dart';
 import 'package:heart_voyage/pages/island/practice.dart';
 import 'package:heart_voyage/pages/island/treehole.dart';
 
+import '../../system/common_image.dart';
+import '../../system/userdata_func.dart';
+
 class sailIsland extends StatefulWidget {
   const sailIsland({Key? key}) : super(key: key);
 
@@ -67,7 +70,12 @@ class _sailIslandState extends State<sailIsland> {
               ),
             ),
             onPressed: () {
-              Get.to(mood_cache());
+              setState(() {
+                readPhotoPath_mood();
+                loadBasicData();
+                readPhotoPath();
+                Get.to(mood_cache());
+              });
             },
             child: Text(
               "愉快情绪寄存站",
@@ -99,7 +107,7 @@ class _sailIslandState extends State<sailIsland> {
               Get.to(practice());
             },
             child: Text(
-              "情绪练习",
+              "情绪调节",
               style: TextStyle(
                 fontSize: 32,
               ),

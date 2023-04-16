@@ -26,10 +26,10 @@ class _sportsState extends State<sports> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
-        title: const Text("ImagePicker"),
+        title: Text("运动解压打卡"),
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
             Container(
               child: Column(
@@ -37,19 +37,35 @@ class _sportsState extends State<sports> {
                   SizedBox(height: 30,),
                   Text(
                     '运动消耗200卡路里\n（不限运动）视为打卡成功，\n请在下方上传照片凭证。'
-                    , textAlign: TextAlign.center,),
-                  this._imageFile == null
-                      ? Text("请选择图片")
-                      : Image.file(File(_imageFile!.path)),
-                  ElevatedButton(
-                      onPressed: _takePhoto, child: const Text("拍照")),
-                  ElevatedButton(
-                      onPressed: _openGallery, child: const Text("打开相册")),
+                    , textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),),
+                  SizedBox(height: 20,),
+                  Container(
+                    height: 300,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    alignment: Alignment.center,
+                    child: this._imageFile == null
+                        ? Text("请选择图片")
+                        : Image.file(File(_imageFile!.path)),
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                          onPressed: _takePhoto, child: const Text("点击拍照")),
+                      ElevatedButton(
+                          onPressed: _openGallery, child: const Text("打开相册")),
+                    ],
+                  )
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(20),
+            SizedBox(height: 20,),
+            Container(
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: ElevatedButton(
                 onPressed: () {
                   if (this._imageFile != null) {
@@ -61,7 +77,7 @@ class _sportsState extends State<sports> {
                 child: Text('打卡'),
               ),
             ),
-            Padding(
+            /*Padding(
               padding: EdgeInsets.all(20),
               child: ElevatedButton(
                 onPressed: () {
@@ -69,7 +85,7 @@ class _sportsState extends State<sports> {
                 },
                 child: Text('查看打卡日历'),
               ),
-            )
+            )*/
           ],
         ),
       ),

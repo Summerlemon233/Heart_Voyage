@@ -16,8 +16,14 @@ class mood_cache extends StatefulWidget {
 class _mood_cacheState extends State<mood_cache> {
   @override
   void initState() {
-    loadBasicData();
     readPhotoPath_mood();
+    loadBasicData();
+    readPhotoPath();
+    print("photoPath_mood${photoPath_mood}");
+    print("456${basicData["mood_cache_case"] == 0 || photoPath_mood.length == 0}");
+    print("789${photoPath_mood == null}");
+    print("abc${basicData["mood_cache_case"]}");
+    print("def${basicData["photoPath_mood"]}||${basicData["title_mood"]}||${basicData["date_mood"]}");
     //将之前保存到本地的图片加载到临时缓冲区变量List内
     /*for (int i = 0; i <= basicData['star_case']; i++) {
       loadPhoto(i);
@@ -28,7 +34,7 @@ class _mood_cacheState extends State<mood_cache> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -49,7 +55,7 @@ class _mood_cacheState extends State<mood_cache> {
           ],
         ),
       ),
-      body: basicData["mood_cache_case"] == 0
+      body: basicData["mood_cache_case"] == 0 || photoPath_mood.length == 0
           ? Center(
               child: Text("点击刷新键以查看记录"),
             )
@@ -74,7 +80,11 @@ class _mood_cacheState extends State<mood_cache> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Get.to(mood_cache_new());
+          setState(() {
+            selectedAsset_mood = null;
+            Get.to(mood_cache_new());
+          });
+
         },
       ),
     );

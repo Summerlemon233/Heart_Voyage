@@ -125,6 +125,7 @@ class _sailCanvasState extends State<sailCanvas> {
           child: GestureDetector(
             child: Image.asset('assets/images/big_star.png'),
             onTap: () {
+              selectedAsset = null;
               Get.to(upload_star());
             },
           ),
@@ -152,10 +153,12 @@ class _sailCanvasState extends State<sailCanvas> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      //readPhotoPath();
-                      //loadBasicData();
-                      //loadStarData();
-                      Get.to(my_star());
+                      setState(() {
+                        readPhotoPath();
+                        loadBasicData();
+                        loadStarData();
+                        Get.to(my_star());
+                      });
                     },
                     child: Text("我的星星")),
                 SizedBox(

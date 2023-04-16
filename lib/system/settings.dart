@@ -49,7 +49,7 @@ class _settingsState extends State<settings> {
     var _readPhotoPath_avatar_var = readPhotoPath_avatar();
     bool _isSelectedAvatar = !(PhotoPath_avatar[0] == "");
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -69,7 +69,7 @@ class _settingsState extends State<settings> {
           ListTile(
             leading:  Avatar(image: _isSelectedAvatar
                 ? imageFromFile(PhotoPath_avatar[0]).image
-                :common_widgets.returnPet()!.image),
+                :returnPet().image),
             title: Text("${basicData['username']}"),
             onTap: (){
               setState(() {
