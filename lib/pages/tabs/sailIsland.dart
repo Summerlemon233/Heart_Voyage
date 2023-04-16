@@ -17,42 +17,24 @@ class sailIsland extends StatefulWidget {
 class _sailIslandState extends State<sailIsland> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         SizedBox(
           height: 20,
         ),
-        ElevatedButton(
-          onPressed: () {
-            Get.to(treehole());
-          },
-          child: Text(
-            "吐苦水树洞",
-            style: TextStyle(
-              fontSize: 32,
-            ),
-          ),
-          style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
-            foregroundColor:
-                MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
-            minimumSize: MaterialStateProperty.all(Size(
-                MediaQuery.of(context).size.width * 0.8,
-                MediaQuery.of(context).size.height * 0.1)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-                side: BorderSide(
-                    color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+        Container(
+          padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1,
+              0, MediaQuery.of(context).size.width * 0.1, 0),
+          child: ElevatedButton(
+            onPressed: () {
+              Get.to(treehole());
+            },
+            child: Text(
+              "吐苦水树洞",
+              style: TextStyle(
+                fontSize: 32,
               ),
             ),
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        ElevatedButton(
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
@@ -69,49 +51,79 @@ class _sailIslandState extends State<sailIsland> {
                 ),
               ),
             ),
-            onPressed: () {
-              setState(() {
-                readPhotoPath_mood();
-                loadBasicData();
-                readPhotoPath();
-                Get.to(mood_cache());
-              });
-            },
-            child: Text(
-              "愉快情绪寄存站",
-              style: TextStyle(
-                fontSize: 32,
-              ),
-            )),
+          ),
+        ),
         SizedBox(
           height: 20,
         ),
-        ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
-              foregroundColor:
-                  MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
-              minimumSize: MaterialStateProperty.all(Size(
-                  MediaQuery.of(context).size.width * 0.8,
-                  MediaQuery.of(context).size.height * 0.1)),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  side: BorderSide(
-                      color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+        Container(
+          padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1,
+              0, MediaQuery.of(context).size.width * 0.1, 0),
+          child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                foregroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                minimumSize: MaterialStateProperty.all(Size(
+                    MediaQuery.of(context).size.width * 0.8,
+                    MediaQuery.of(context).size.height * 0.1)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: BorderSide(
+                        color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+                  ),
                 ),
               ),
-            ),
-            onPressed: () {
-              Get.to(practice());
-            },
-            child: Text(
-              "情绪调节",
-              style: TextStyle(
-                fontSize: 32,
+              onPressed: () {
+                setState(() {
+                  readPhotoPath_mood();
+                  loadBasicData();
+                  readPhotoPath();
+                  Get.to(mood_cache());
+                });
+              },
+              child: Text(
+                "愉快情绪寄存站",
+                style: TextStyle(
+                  fontSize: 32,
+                ),
+              )),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1,
+              0, MediaQuery.of(context).size.width * 0.1, 0),
+          child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                foregroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                minimumSize: MaterialStateProperty.all(Size(
+                    MediaQuery.of(context).size.width * 0.8,
+                    MediaQuery.of(context).size.height * 0.1)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: BorderSide(
+                        color: Color.fromRGBO(90, 66, 53, 1), width: 2.0),
+                  ),
+                ),
               ),
-            )),
+              onPressed: () {
+                Get.to(practice());
+              },
+              child: Text(
+                "情绪调节",
+                style: TextStyle(
+                  fontSize: 32,
+                ),
+              )),
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.1,
         ),

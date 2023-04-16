@@ -86,11 +86,13 @@ class _registerState extends State<register> {
             const SizedBox(
               height: 30,
             ),
-
+            buildEmailTextField(), // 输入邮箱
+            const SizedBox(height: 30),
             buildPasswordTextField(context), // 输入密码
             const SizedBox(height: 30),
             buildConfirmPasswordTextField(context), // 确认密码
-            buildMobileTextField(), // 输入手机
+
+
 
             const SizedBox(height: 30),
             const SizedBox(height: 60),
@@ -262,6 +264,26 @@ class _registerState extends State<register> {
         return null;
       },
       //onSaved: (v) => _emailReg = v!,
+    );
+  }
+
+  Widget buildEmailTextField() {
+    return TextFormField(
+      style: TextStyle(
+        fontFamily: "Helvetica_Neue",
+      ),
+      controller: _controllerMail,
+      decoration: const InputDecoration(labelText: '邮箱地址',
+        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),),
+      validator: (v) {
+        var emailReg = RegExp(
+            r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
+        if (!emailReg.hasMatch(v!)) {
+          return '请输入正确的邮箱地址';
+        }
+        return null;
+      },
+      onSaved: (v) => _emailReg = v!,
     );
   }
 

@@ -154,7 +154,7 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
                         Container(
 
                             padding: const EdgeInsets.all(8.0),
-                            child:Image.network(metadata.artwork,fit: BoxFit.cover,),
+                            child:Image.asset("assets/images/Summer_Pockets_island.png",fit: BoxFit.cover,),
                             height: MediaQuery.of(context).size.width,
                             width: MediaQuery.of(context).size.width,
                           ),

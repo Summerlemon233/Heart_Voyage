@@ -48,7 +48,7 @@ class mapListTile extends StatelessWidget {
   }
 }
 
-Widget returnPet() {
+Image returnPet() {
   Image _tmp;
   switch (basicData['CurrPet']) {
     case 0:
@@ -66,7 +66,7 @@ Widget returnPet() {
       _tmp =  Image(image: AssetImage('assets/images/pet0.png'));break;
     //return Image(image: AssetImage('assets/images/pet0.png'));
   }
-  return /*Obx(() => Container(
+  return /*Obx(() => Container
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(color: Colors.blue),

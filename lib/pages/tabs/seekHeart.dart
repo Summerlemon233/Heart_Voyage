@@ -115,7 +115,7 @@ class _seekHeartState extends State<seekHeart> {
           height: 0.02 * MediaQuery.of(context).size.height,
         ),
         Container(
-            height: 0.4 * MediaQuery.of(context).size.height,
+            height: 0.35 * MediaQuery.of(context).size.height,
             padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, 0, MediaQuery.of(context).size.width * 0.1, 0),
             child: LineChart(
               mainData(),

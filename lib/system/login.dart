@@ -6,6 +6,7 @@ import 'package:heart_voyage/system/forgotpswd.dart';
 import 'package:heart_voyage/system/register.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
+import 'dart:core';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -28,6 +29,11 @@ class _loginState extends State<login> {
 
   @override
   Widget build(BuildContext context) {
+    loadBasicData();
+    /*if(basicData['isLogin'] == false)
+    {
+      Get.to(login());
+    }*/
     return Scaffold(
       backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
@@ -259,18 +265,17 @@ class _loginState extends State<login> {
         fontFamily: "Helvetica_Neue",
       ),
       decoration: InputDecoration(
-        labelText: '邮箱地址:${basicData['email']}',
+        labelText: '邮箱地址 ${basicData['email']}',
         border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30))),
       ),
       validator: (v) {
         var emailReg = RegExp(
             r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
-        if (true
-            //!emailReg.hasMatch(v!)
-            ) {
+        if (false) {
           return '请输入正确的邮箱地址';
         }
+        return null;
       },
       onSaved: (v) => _loginEmail = v!,
     );

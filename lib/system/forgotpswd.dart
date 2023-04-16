@@ -26,7 +26,7 @@ class _forgotpwsdState extends State<forgotpwsd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -89,8 +89,11 @@ class _forgotpwsdState extends State<forgotpwsd> {
         width: 270,
         child: ElevatedButton(
           style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(45, 73, 104, 1),),
               // 设置圆角
               shape: MaterialStateProperty.all(const StadiumBorder(
+
                   side: BorderSide(style: BorderStyle.none)))),
           child:
               Text('重置密码', style: Theme.of(context).primaryTextTheme.headline5),
@@ -165,8 +168,8 @@ class _forgotpwsdState extends State<forgotpwsd> {
         fontFamily: "Helvetica_Neue",
       ),
       decoration: InputDecoration(
-        enabled: false,
-        labelText: '之前注册的邮箱地址:${basicData['email']}',
+        enabled: true,
+        labelText: '之前注册的邮箱地址 ${basicData['email']}',
         labelStyle: TextStyle(
           fontFamily: "Helvetica_Neue",
         ),

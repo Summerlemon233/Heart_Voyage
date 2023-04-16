@@ -155,7 +155,7 @@ class white_noiseState extends State<white_noise> with WidgetsBindingObserver {
                       Container(
 
                         padding: const EdgeInsets.all(8.0),
-                        child:Image.network(metadata.artwork,fit: BoxFit.cover,),
+                        child:Image.asset("assets/images/album.jpg",fit: BoxFit.cover,),
                         height: MediaQuery.of(context).size.width,
                         width: MediaQuery.of(context).size.width,
                       ),

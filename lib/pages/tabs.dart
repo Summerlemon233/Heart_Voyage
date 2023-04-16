@@ -8,11 +8,11 @@ import 'package:heart_voyage/system/settings.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
-import '../system/common_widgets.dart';
 import './tabs/sailCanvas.dart';
 import './tabs/sailIsland.dart';
 import './tabs/sailTrack.dart';
 import './tabs/seekHeart.dart';
+import '../system/change_avatar.dart';
 import '../system/login.dart';
 
 class Tabs extends StatefulWidget {
@@ -41,22 +41,24 @@ class _TabsState extends State<Tabs> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(45, 73, 104, 1),
-        foregroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text("心旅"),
-          IconButton(onPressed: (){
-            setState(() {
-              loadBasicData();
-              readPhotoPath();
-              readPhotoPath_avatar();
-              readPhotoPath_mood();
-            });
-          }, icon: Icon(Icons.refresh))],
-        )
-
-      ),
+          backgroundColor: Color.fromRGBO(45, 73, 104, 1),
+          foregroundColor: Colors.white,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("心旅"),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      loadBasicData();
+                      readPhotoPath();
+                      readPhotoPath_avatar();
+                      readPhotoPath_mood();
+                    });
+                  },
+                  icon: Icon(Icons.refresh))
+            ],
+          )),
       drawer: Drawer(
         child: _drawer[_currentDrawer],
       ),
@@ -111,6 +113,7 @@ class drawerListLogined extends StatefulWidget {
 
 class _drawerListLoginedState extends State<drawerListLogined> {
   bool isDarkMode = Get.isDarkMode;
+  bool _isSelectedAvatar = !(PhotoPath_avatar[0] == "");
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +128,9 @@ class _drawerListLoginedState extends State<drawerListLogined> {
             basicData['email'],
             style: TextStyle(color: Colors.black),
           ),
-          currentAccountPicture: CircleAvatar(
-            child: returnPet(),
-          ),
+          currentAccountPicture: _isSelectedAvatar
+              ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
+              : Avatar(image: _returnPet().image),
           onDetailsPressed: () {},
           decoration: BoxDecoration(
             image:
@@ -153,11 +156,11 @@ class _drawerListLoginedState extends State<drawerListLogined> {
                 onTap: () => Get.to(settings()),
               ),
               Divider(),
-             /* ListTile(
+              /* ListTile(
                 leading: Icon(Icons.person),
                 title: Text("个人中心"),
               ),*/
-             /* Divider(),
+              /* Divider(),
               ListTile(
                 leading: Icon(Icons.chat),
                 title: Text("消息中心"),
@@ -208,6 +211,41 @@ class _drawerListLoginedState extends State<drawerListLogined> {
       ],
     );
   }
+
+  Image _returnPet() {
+    Image _tmp;
+    switch (basicData['CurrPet']) {
+      case 0:
+        _tmp = Image(image: AssetImage('assets/images/pet0.png'));
+        break;
+      case 1:
+        _tmp = Image(image: AssetImage('assets/images/pet1.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet1.png'));
+      case 2:
+        _tmp = Image(image: AssetImage('assets/images/pet2.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet2.png'));
+      case 3:
+        _tmp = Image(image: AssetImage('assets/images/pet3.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet3.png'));
+      default:
+        _tmp = Image(image: AssetImage('assets/images/pet0.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet0.png'));
+    }
+    return /*Obx(() => Container
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.blue),
+      ),
+      child: CircleAvatar(
+        backgroundImage: _tmp.image,
+        radius: 50,
+      )))*/
+        _tmp;
+  }
 }
 
 class drawerListNotLogined extends StatefulWidget {
@@ -235,10 +273,9 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
             basicData['email'],
             style: TextStyle(color: Colors.black),
           ),
-          currentAccountPicture: CircleAvatar(
-              child: _isSelectedAvatar
-                  ? imageFromFile(PhotoPath_avatar[0]).image
-                  : returnPet(),),
+          currentAccountPicture: _isSelectedAvatar
+              ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
+              : Avatar(image: _returnPet().image),
           onDetailsPressed: () {},
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -318,5 +355,38 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
     );
   }
 
-  returnPet() {}
+  Image _returnPet() {
+    Image _tmp;
+    switch (basicData['CurrPet']) {
+      case 0:
+        _tmp = Image(image: AssetImage('assets/images/pet0.png'));
+        break;
+      case 1:
+        _tmp = Image(image: AssetImage('assets/images/pet1.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet1.png'));
+      case 2:
+        _tmp = Image(image: AssetImage('assets/images/pet2.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet2.png'));
+      case 3:
+        _tmp = Image(image: AssetImage('assets/images/pet3.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet3.png'));
+      default:
+        _tmp = Image(image: AssetImage('assets/images/pet0.png'));
+        break;
+      //return Image(image: AssetImage('assets/images/pet0.png'));
+    }
+    return /*Obx(() => Container
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.blue),
+      ),
+      child: CircleAvatar(
+        backgroundImage: _tmp.image,
+        radius: 50,
+      )))*/
+        _tmp;
+  }
 }
