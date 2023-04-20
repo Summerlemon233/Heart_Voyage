@@ -196,7 +196,7 @@ class _overall_judgeState extends State<overall_judge> {
               width: 100,
               child: ElevatedButton(
                 onPressed: () {
-                  basicData["moodscore"] = score_overall_anxiety;
+                  basicData["moodScore"] = score_overall_anxiety;
                   saveBasicData();
                   Get.to(check_overall_score(), arguments: score_overall_anxiety);
                 },

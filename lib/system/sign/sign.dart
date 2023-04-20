@@ -1,13 +1,16 @@
 import 'dart:collection';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:heart_voyage/pages/tabs.dart';
 import 'package:heart_voyage/system/common_widgets.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../showdata.dart';
 import './utils.dart';
 
 class sign extends StatefulWidget {
@@ -24,6 +27,7 @@ class _signState extends State<sign> {
   DateTime? _selectedDay;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
+  late int _value;
   late LinkedHashMap myEvents = returnMyEvents();
 
   //bool _isTodaysigned = basicData['isTodaySigned'];
@@ -52,6 +56,8 @@ class _signState extends State<sign> {
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
     myEvents = returnMyEvents();
+    int _rand = signPhotoPath.length;
+     _value= Random().nextInt(_rand);
   }
 
   @override
@@ -195,6 +201,10 @@ class _signState extends State<sign> {
                           setState(() {
                             basicData['isTodaysigned'] = true;
                             basicData['score'] += 10;
+                            final _last_time_signed_box = GetStorage();
+                            var _now = DateTime.now();
+                            int _nowTime = _now.millisecondsSinceEpoch;
+                            _last_time_signed_box.write('last_time_anxiety',_nowTime);
                             saveBasicData();
                           });
                           Get.defaultDialog(
@@ -217,7 +227,7 @@ class _signState extends State<sign> {
                                       height: 10,
                                     ),
                                     Container(
-                                      child: Image.asset('assets/images/Psy_every_day_1.png'),
+                                      child: Image.asset(signPhotoPath[_value]),
                                     ),
                                     Divider(),
                                     SizedBox(
@@ -225,7 +235,7 @@ class _signState extends State<sign> {
                                     ),
                                     Container(
 
-                                      child: Text("内卷的定义\n从结果来看：量的增长，质的不变。量的增长表现为时间和精力消耗的增长，质的不变表现为自身能力（知识广度和深度、学术能力、创新能力等）的停滞或与量的增长不成正比的发展。\n从动机来看：有想要超越别人的成就目标，区别于自我提升、追求卓越的掌握目标。"),
+                                      child: Text(signContents[_value]),
                                       width: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     SizedBox(

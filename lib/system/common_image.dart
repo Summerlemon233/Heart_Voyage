@@ -34,6 +34,7 @@ Future<void> savePhotoPath(List<String> filePaths) async {
 
 Future<void> readPhotoPath() async {
   //photoPath = [];
+  if(GetStorage().read('photoPath') == null) return;
   final filePath = GetStorage().read('photoPath');
   final File file = File(filePath);
   final content = await file.readAsString();
@@ -50,6 +51,7 @@ Future<void> savePhotoPath_mood(List<String> filePaths) async {
 }
 
 Future<void> readPhotoPath_mood() async {
+  if(GetStorage().read('photoPath_mood') == null) return;
   final filePath = GetStorage().read('photoPath_mood');
   final File file = File(filePath);
   final content = await file.readAsString();

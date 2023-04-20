@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,23 @@ class white_noise extends StatefulWidget {
 }
 
 class white_noiseState extends State<white_noise> with WidgetsBindingObserver {
+  late Timer _timer;
+  int _countdownTime = 0;
+  void startCountdownTimer() {
+    const oneSec = const Duration(seconds: 1);
+
+    var callback = (timer) => {
+      setState(() {
+        if (_countdownTime < 1) {
+          _timer.cancel();
+        } else {
+          _countdownTime = _countdownTime - 1;
+        }
+      })
+    };
+
+    _timer = Timer.periodic(oneSec, callback);
+  }
   late AudioPlayer _player;
   final _playlist = ConcatenatingAudioSource(children: [
     // Remove this audio source from the Windows and Linux version because it's not supported yet
@@ -24,7 +43,7 @@ class white_noiseState extends State<white_noise> with WidgetsBindingObserver {
       ClippingAudioSource(
         child: AudioSource.asset('assets/audio/white_noise.mp3'),
         tag: AudioMetadata(
-          album: "白噪音",
+          album: "水之诗",
           title: "白噪音",
           artwork:
           "https://cdnimg103.lizhi.fm/audio_cover/2018/08/06/2685062117539402759_320x320.jpg",
@@ -42,6 +61,8 @@ class white_noiseState extends State<white_noise> with WidgetsBindingObserver {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
     ));
+    _countdownTime = 440;
+    startCountdownTimer();
     _init();
   }
 
@@ -90,6 +111,9 @@ class white_noiseState extends State<white_noise> with WidgetsBindingObserver {
   void dispose() {
     ambiguate(WidgetsBinding.instance)!.removeObserver(this);
     _player.dispose();
+    if (_timer != null) {
+      _timer.cancel();
+    }
     super.dispose();
   }
 
@@ -213,12 +237,15 @@ class white_noiseState extends State<white_noise> with WidgetsBindingObserver {
                     },
                   ),*/
                   SizedBox(height: 8,),
+                  _countdownTime <= 0 ?
                   ElevatedButton(onPressed: (){
                     setState(() {
                       common_widgets.returnDialog(10);
+
                       //Navigator.of(context).pop();
                     });
-                  }, child: Text("我已完成练习")),
+                  }, child: Text("我已完成练习"))
+                      :Container(),
                   SizedBox(height: 8,),
                   /*Expanded(
                     child: Text(

@@ -34,6 +34,8 @@ class basicData_management extends GetxController {
 }
 
 Map<String,dynamic> basicData = {
+  'signedDate':[],
+  'signedTimes':0,
   'isLogin':false,
   'isTodaysigned': false,
   'username': '您暂时还未登录',

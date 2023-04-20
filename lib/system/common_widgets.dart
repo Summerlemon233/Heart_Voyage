@@ -18,12 +18,15 @@ class mapListTile extends StatelessWidget {
   final String Area;
   final String AssetPath;
   final VoidCallback onTapFunc;
+  final int unlock;
 
   const mapListTile(
       {Key? key,
       required this.Area,
       required this.AssetPath,
-      required this.onTapFunc})
+      required this.onTapFunc,
+      this.unlock = 0}
+      )
       : super(key: key);
 
   @override
@@ -31,13 +34,15 @@ class mapListTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTapFunc,
       child: Container(
+        
         margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
         padding: EdgeInsets.all(5),
         height: 128,
         alignment: Alignment.bottomRight,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
           image: DecorationImage(
-              image: AssetImage(AssetPath), fit: BoxFit.fitHeight),
+              image: AssetImage(AssetPath), fit: BoxFit.fitWidth),
         ),
         child: SizedBox(
           child:

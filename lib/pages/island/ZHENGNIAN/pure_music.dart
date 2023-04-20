@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,9 @@ import 'package:rxdart/rxdart.dart';
 import 'package:heart_voyage/system/common_widgets.dart';
 import '../../../system/common_audio.dart';
 
+
+
+
 class pure_music extends StatefulWidget {
   const pure_music({Key? key}) : super(key: key);
 
@@ -15,6 +20,23 @@ class pure_music extends StatefulWidget {
 }
 
 class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
+  late Timer _timer;
+  int _countdownTime = 0;
+  void startCountdownTimer() {
+    const oneSec = const Duration(seconds: 1);
+
+    var callback = (timer) => {
+      setState(() {
+        if (_countdownTime < 1) {
+          _timer.cancel();
+        } else {
+          _countdownTime = _countdownTime - 1;
+        }
+      })
+    };
+    _timer = Timer.periodic(oneSec, callback);
+  }
+
   late AudioPlayer _player;
   final _playlist = ConcatenatingAudioSource(children: [
     // Remove this audio source from the Windows and Linux version because it's not supported yet
@@ -42,6 +64,8 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
     ));
+    _countdownTime = 240;
+    startCountdownTimer();
     _init();
   }
 
@@ -90,6 +114,9 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
   void dispose() {
     ambiguate(WidgetsBinding.instance)!.removeObserver(this);
     _player.dispose();
+    if (_timer != null) {
+      _timer.cancel();
+    }
     super.dispose();
   }
 
@@ -212,13 +239,15 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
                     },
                   ),*/
                   SizedBox(height: 8,),
+                  _countdownTime <= 0 ?
                   ElevatedButton(onPressed: (){
                     setState(() {
                       common_widgets.returnDialog(10);
 
                       //Navigator.of(context).pop();
                     });
-                  }, child: Text("我已完成练习")),
+                  }, child: Text("我已完成练习"))
+                  :Container(),
                   SizedBox(height: 8,),
                   /*Expanded(
                     child: Text(

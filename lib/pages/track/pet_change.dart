@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:heart_voyage/pages/tabs.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 import 'package:image_card/image_card.dart';
@@ -15,6 +18,15 @@ class _pet_changeState extends State<pet_change> {
   final List<String> names_pet = ['狗狗', '狐狐', '小狼', '兔兔'];
   final List<String> cond_pet = ['点击选中', '已选中'];
   var nowSelected = basicData['CurrPet'];
+  String returnPetName()
+  {
+    final _nameBox = GetStorage();
+    if(_nameBox.read('namePet') != null)
+    {
+      return _nameBox.read('namePet');
+    }
+    else return names_pet[nowSelected];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +35,10 @@ class _pet_changeState extends State<pet_change> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
+        leading: IconButton(icon: Icon(Icons.keyboard_backspace),onPressed: ()
+        {
+          Get.offAll(Tabs());
+        },),
         title: Text("更换心宠"),
       ),
       body: SafeArea(
@@ -32,7 +48,7 @@ class _pet_changeState extends State<pet_change> {
               height: 20,
             ),
             Text(
-              '当前心宠：${names_pet[nowSelected]}',
+              '当前心宠：${returnPetName()}（${names_pet[nowSelected]}）',
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(

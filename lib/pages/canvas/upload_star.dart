@@ -52,18 +52,18 @@ class _upload_starState extends State<upload_star> {
     String formattedDate =
         '${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}';
     int index = basicData["star_case"];
-    date_star[index] = formattedDate;
+    /*date_star[index] = formattedDate;
     title_star[index] = titleController.text;
     context_star[index] = returnType() + "智能";
     used_time_star[index] = returnTime();
     score_star[index] = rng.nextInt(4) + 6;
-    intelligence_star[index] = returnType() + "智能";
+    intelligence_star[index] = returnType() + "智能";*/
 
     basicData["date_star"][index] = formattedDate;
     basicData["title_star"][index] = titleController.text;
     basicData["intelligence_star"][index] = returnType() + "智能";
     basicData["used_time_star"][index] = returnTime();
-    basicData["score_star"][index] = rng.nextInt(4) + 6;
+    basicData["score_star"][index] = _nowSelectedScore;
 
     if (isSelectedType[1] == true) {
       //star_data[index]["1_selected"] = true;
@@ -140,12 +140,20 @@ class _upload_starState extends State<upload_star> {
         tmp += " ";
       }
     }
-    if(!_flag)
-    {
-      tmp = "尚未选择";
+    if (!_flag) {
+      tmp = "尚未选择\n（可以多选哦）";
     }
 
     return tmp;
+  }
+
+  int _nowSelectedScore = 0;
+
+  returnScore() {
+    if (_nowSelectedScore != 0)
+      return _nowSelectedScore;
+    else
+      return "尚未选择";
   }
 
   final titleController = TextEditingController();
@@ -232,6 +240,7 @@ class _upload_starState extends State<upload_star> {
                   //child: Expanded(
                   child: ListView(
                     children: [
+                      SizedBox(height: 5,),
                       Center(
                         child: Text(
                           "上传星星",
@@ -239,15 +248,20 @@ class _upload_starState extends State<upload_star> {
                         ),
                       ),
                       Divider(),
-                      TextFormField(
-                        textAlign:  TextAlign.center,
-                        controller: titleController,
-                        decoration: const InputDecoration(labelText: '任务描述',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30))
+                      Container(
+                        child: TextFormField(
+                          textAlign: TextAlign.center,
+                          controller: titleController,
+                          decoration: const InputDecoration(
+                            labelText: '任务描述',
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                           ),
                         ),
-                      ),
+                        padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                      )
+                      ,
                       Divider(),
                       /*Expanded(
                         child: */
@@ -257,8 +271,8 @@ class _upload_starState extends State<upload_star> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
-
-                                child: Text("所用时间:\n${returnTime()}",textAlign: TextAlign.center),
+                                child: Text("所用时间:\n${returnTime()}",
+                                    textAlign: TextAlign.center),
                                 width: 120,
                               ),
                               ElevatedButton(
@@ -324,7 +338,10 @@ class _upload_starState extends State<upload_star> {
                         children: [
                           Container(
                             width: 120,
-                            child: Text("类型选择:\n${returnType()}",textAlign: TextAlign.center,),
+                            child: Text(
+                              "类型选择:\n${returnType()}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           ElevatedButton(
                               onPressed: () {
@@ -336,97 +353,217 @@ class _upload_starState extends State<upload_star> {
                                     child: ListView(
                                       children: [
                                         ListTile(
-                                          title: Text("语言智能",style: TextStyle(color: isSelectedType[1] ? Colors.grey:Colors.black),),
-                                          subtitle: Text("掌握并运用语言、文字的能力",style: TextStyle(color: isSelectedType[1] ? Colors.grey:Colors.black),),
-                                          onTap: () {
-                                            setState(() {
-                                              isSelectedType[1] = !isSelectedType[1];
-                                            });
-                                          },
-                                        ),
-                                        Divider(),
-                                        ListTile(
-                                          title: Text("逻辑数学智能",style: TextStyle(color: isSelectedType[2] ? Colors.grey:Colors.black),),
-                                          subtitle:
-                                              Text("逻辑思维推理、数学运算以及科学分析方面的能力",style: TextStyle(color: isSelectedType[2] ? Colors.grey:Colors.black),),
-                                          onTap: () {
-                                            setState(() {
-                                              isSelectedType[2] = !isSelectedType[2];
-                                            });
-                                          },
-                                        ),
-                                        Divider(),
-                                        ListTile(
-                                          title: Text("音乐智能",style: TextStyle(color: isSelectedType[3] ? Colors.grey:Colors.black),),
-                                          subtitle: Text("感受、欣赏、演奏、歌唱、创作音乐的能力",style: TextStyle(color: isSelectedType[3] ? Colors.grey:Colors.black),),
-                                          onTap: () {
-                                            setState(() {
-                                              isSelectedType[3] = !isSelectedType[3];
-                                            });
-                                          },
-                                        ),
-                                        Divider(),
-                                        ListTile(
-                                          title: Text("肢体运作智能",style: TextStyle(color: isSelectedType[4] ? Colors.grey:Colors.black),),
+                                          title: Text(
+                                            "语言智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[1]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
                                           subtitle: Text(
-                                              "运用全身或身体的某一部分，\n包括嘴和手，解决问题或创造产品的能力",style: TextStyle(color: isSelectedType[4] ? Colors.grey:Colors.black),),
+                                            "掌握并运用语言、文字的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[1]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[4] = !isSelectedType[4];
+                                              isSelectedType[1] =
+                                                  !isSelectedType[1];
+                                              Get.back();
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("人际智能",style: TextStyle(color: isSelectedType[5] ? Colors.grey:Colors.black),),
-                                          subtitle: Text("了解他人、与人合作的能力",style: TextStyle(color: isSelectedType[5] ? Colors.grey:Colors.black),),
-                                          onTap: () {
-                                            setState(() {
-                                              isSelectedType[5] = !isSelectedType[5];
-                                            });
-                                          },
-                                        ),
-                                        Divider(),
-                                        ListTile(
-                                          title: Text("空间智能",style: TextStyle(color: isSelectedType[6] ? Colors.grey:Colors.black),),
+                                          title: Text(
+                                            "逻辑数学智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[2]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
                                           subtitle: Text(
-                                              "针对所观察的事物，\n在脑海中形成一个模型或图案从而加以运用的能力",style: TextStyle(color: isSelectedType[6] ? Colors.grey:Colors.black),),
+                                            "逻辑思维推理、数学运算以及科学分析方面的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[2]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[6] = !isSelectedType[6];
+                                              isSelectedType[2] =
+                                                  !isSelectedType[2];
+                                              Get.back();
                                             });
                                           },
                                         ),
                                         Divider(),
                                         ListTile(
-                                          title: Text("内省智能",style: TextStyle(color: isSelectedType[7] ? Colors.grey:Colors.black),),
-                                          subtitle:
-                                              Text("深入并理解自己内心世界并用以指导自己行为的能力",style: TextStyle(color: isSelectedType[7] ? Colors.grey:Colors.black),),
-                                          onTap: () {
-                                            setState(() {
-                                              isSelectedType[7] = !isSelectedType[7];
-                                            });
-                                          },
-                                        ),
-                                        Divider(),
-                                        ListTile(
-                                          title: Text("自然探索智能",style: TextStyle(color: isSelectedType[8] ? Colors.grey:Colors.black),),
-                                          subtitle:
-                                              Text("能认识植物、动物和其它自然环境(如云和石头)的能力",style: TextStyle(color: isSelectedType[8] ? Colors.grey:Colors.black),),
-                                          onTap: () {
-                                            setState(() {
-                                              isSelectedType[8] = !isSelectedType[8];
-                                            });
-                                          },
-                                        ),
-                                        Divider(),
-                                        ListTile(
-                                          title: Text("存在智能",style: TextStyle(color: isSelectedType[9] ? Colors.grey:Colors.white),),
+                                          title: Text(
+                                            "音乐智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[3]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
                                           subtitle: Text(
-                                              "人们表现出的对生命、死亡和终极现实提出问题，\n并思考这些问题的倾向性",style: TextStyle(color: isSelectedType[9] ? Colors.grey:Colors.black),),
+                                            "感受、欣赏、演奏、歌唱、创作音乐的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[3]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
                                           onTap: () {
                                             setState(() {
-                                              isSelectedType[9] = !isSelectedType[9];
+                                              isSelectedType[3] =
+                                                  !isSelectedType[3];
+                                              Get.back();
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text(
+                                            "肢体运作智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[4]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          subtitle: Text(
+                                            "运用全身或身体的某一部分，\n包括嘴和手，解决问题或创造产品的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[4]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[4] =
+                                                  !isSelectedType[4];
+                                              Get.back();
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text(
+                                            "人际智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[5]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          subtitle: Text(
+                                            "了解他人、与人合作的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[5]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[5] =
+                                                  !isSelectedType[5];
+                                              Get.back();
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text(
+                                            "空间智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[6]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          subtitle: Text(
+                                            "针对所观察的事物，\n在脑海中形成一个模型或图案从而加以运用的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[6]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[6] =
+                                                  !isSelectedType[6];
+                                              Get.back();
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text(
+                                            "内省智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[7]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          subtitle: Text(
+                                            "深入并理解自己内心世界并用以指导自己行为的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[7]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[7] =
+                                                  !isSelectedType[7];
+                                              Get.back();
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text(
+                                            "自然探索智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[8]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          subtitle: Text(
+                                            "能认识植物、动物和其它自然环境(如云和石头)的能力",
+                                            style: TextStyle(
+                                                color: isSelectedType[8]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[8] =
+                                                  !isSelectedType[8];
+                                              Get.back();
+                                            });
+                                          },
+                                        ),
+                                        Divider(),
+                                        ListTile(
+                                          title: Text(
+                                            "存在智能",
+                                            style: TextStyle(
+                                                color: isSelectedType[9]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          subtitle: Text(
+                                            "人们表现出的对生命、死亡和终极现实提出问题，\n并思考这些问题的倾向性",
+                                            style: TextStyle(
+                                                color: isSelectedType[9]
+                                                    ? Colors.grey
+                                                    : Colors.black),
+                                          ),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelectedType[9] =
+                                                  !isSelectedType[9];
+                                              Get.back();
                                             });
                                           },
                                         ),
@@ -442,6 +579,232 @@ class _upload_starState extends State<upload_star> {
                       ),
                       /*Expanded(
                         child: */
+                      Divider(),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              width: 120,
+                              child: Text(
+                                "预期分数:\n${returnScore()}",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            ElevatedButton(
+                                child: Text("点我选择"),
+                                onPressed: () {
+                                  setState(() {
+                                    Get.defaultDialog(
+                                      title: "选择预期分数",
+                                      content: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.4,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        child: GridView.count(
+                                          crossAxisCount: 3,
+                                          children: [
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 1;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '1',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 2;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '2',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 3;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '3',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 4;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '4',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 5;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '5',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 6;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '6',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 7;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '7',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 8;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '8',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 9;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '9',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                            'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                    Container(),
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _nowSelectedScore = 10;
+                                                      Get.back();
+                                                    });
+                                                  },
+                                                  child: Text(
+                                                    '10',
+                                                    style: TextStyle(
+                                                        fontSize: 30,
+                                                        fontFamily:
+                                                        'Helvetica_Neue'),
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.black38)),
+                                            ),
+                                            Container(),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
+                                })
+                          ]),
                       Divider(),
                       Container(
                         child: Text("上传图片"),

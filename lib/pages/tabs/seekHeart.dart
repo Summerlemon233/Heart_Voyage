@@ -108,7 +108,7 @@ class _seekHeartState extends State<seekHeart> {
         ),
         Container(
           child: Center(
-            child: Text("情绪变化曲线"),
+            child: Text("情绪变化曲线",style: TextStyle(fontSize: 20),),
           ),
         ),
         SizedBox(
@@ -175,7 +175,7 @@ class _seekHeartState extends State<seekHeart> {
       case 24:
         text = '24';
         break;
-      case 32:
+      case 30:
         text = '焦虑值';
         break;
       default:
@@ -242,8 +242,8 @@ class _seekHeartState extends State<seekHeart> {
       lineBarsData: [
         LineChartBarData(
           spots: [
-            FlSpot(0, 2),
-            FlSpot(1, basicData['moodScore']),
+            FlSpot(0, basicData['moodScore'].toDouble()),
+            FlSpot(1, basicData['moodScore'].toDouble()),
           ],
           isCurved: true,
           gradient: LinearGradient(

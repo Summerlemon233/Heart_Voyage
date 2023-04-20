@@ -60,8 +60,8 @@ class _loginState extends State<login> {
             const SizedBox(height: 30),
             buildRegisterText(context), // 注册
             const SizedBox(height: 60),
-            buildOtherLoginText(), // 其他账号登录
-            buildOtherMethod(context), // 其他登录方式
+            /*buildOtherLoginText(), // 其他账号登录
+            buildOtherMethod(context),*/ // 其他登录方式
           ],
         ),
       ),
@@ -265,7 +265,9 @@ class _loginState extends State<login> {
         fontFamily: "Helvetica_Neue",
       ),
       decoration: InputDecoration(
-        labelText: '邮箱地址 ${basicData['email']}',
+        labelText: '邮箱地址 '
+            //'${basicData['email']}'
+            '',
         border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30))),
       ),

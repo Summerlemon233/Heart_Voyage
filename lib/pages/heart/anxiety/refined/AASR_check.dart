@@ -9,7 +9,17 @@ class AASR_check extends StatefulWidget {
 }
 
 class _AASR_checkState extends State<AASR_check> {
-  int _score = Get.arguments;
+  final List<int> _args = Get.arguments;
+  late int score1;
+  late int score2;
+  @override
+  void initState() {
+    double _tmp =  (_args[0] + _args[1])/12;
+    score1 = _tmp.toInt();
+    score2 = _args[2];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +31,12 @@ class _AASR_checkState extends State<AASR_check> {
           margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Column(
             children: [
-              Text('0-4分：没有焦虑症，请注意自我保重。',style: TextStyle(fontSize: 20),),
-              Text('5-9分：可能有轻微焦虑症，建议您咨询心理医生或心理医学工作者。',style: TextStyle(fontSize: 20),),
-              Text('10-13分：可能有中度焦虑症，您最好咨询心理医生或心理医学工作者。',style: TextStyle(fontSize: 20),),
-              Text('14-18分：可能有中重度焦虑症，建议您咨询心理医生或精神科医生。',style: TextStyle(fontSize: 20),),
-              Text('19-21分：可能有重度焦虑症，请一定要看心理医生或精神科医生。',style: TextStyle(fontSize: 20),),
+              Text('安全型:亲近依赖均分>3,且焦虑均分<3。',style: TextStyle(fontSize: 20),),
+              Text('先占型:亲近依赖均分>3,且焦虑均分>3。',style: TextStyle(fontSize: 20),),
+              Text('拒绝型:亲近依赖均分<3,且焦虑均分<3。',style: TextStyle(fontSize: 20),),
+              Text('恐惧型;亲近依赖均分<3,且焦虑均分>3。',style: TextStyle(fontSize: 20),),
               SizedBox(height: 30,),
-              Text('你的焦虑分数为',style: TextStyle(fontSize: 30),),
+              Text('你的亲近依赖均分和焦虑均分分别为',style: TextStyle(fontSize: 30),),
               SizedBox(height: 10),
               Container(
                 padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
@@ -36,7 +45,7 @@ class _AASR_checkState extends State<AASR_check> {
                   border: Border.all(width: 0.5),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Text("${_score}分",style: TextStyle(fontSize: 50),),
+                child: Text("${score1}  ${score2}分",style: TextStyle(fontSize: 50),),
               ),
             ],
           ),

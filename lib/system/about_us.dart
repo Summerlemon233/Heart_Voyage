@@ -41,7 +41,7 @@ class _about_usState extends State<about_us> {
                           style: TextStyle(fontSize: 30),
                         ),
                         Text(
-                          "Version 0.2.6 Beta \n2023/04/17 Offline",
+                          "Version 0.2.8 Beta \n2023/04/20",
                           style: TextStyle(
                               fontSize: 20, fontFamily: 'Helvetica_Neue'),
                         ),

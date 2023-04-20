@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:heart_voyage/system/common_image.dart';
 import 'package:heart_voyage/system/friend.dart';
 import 'package:heart_voyage/system/settings.dart';
@@ -39,16 +40,22 @@ class _TabsState extends State<Tabs> {
   void initState() {
     loadBasicData();
     WidgetsBinding.instance.addPostFrameCallback((_){
+      int _now = DateTime.now().millisecondsSinceEpoch;
+      final _last_time_signed_box = GetStorage();
+
       if(basicData['isLogin'] == false)
       {
         Get.offAll(login());
       }
-      if(basicData['isTodaysigned'] = false)
+      if(_last_time_signed_box.read('last_time_anxiety') == null)
+      {
+        Get.offAll(sign());
+      }
+      else if(_now - _last_time_signed_box.read('last_time_anxiety') > 24 * 60 * 60 * 1000)
       {
         Get.offAll(sign());
       }
     });
-
     super.initState();
   }
 
@@ -291,6 +298,7 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         UserAccountsDrawerHeader(
           accountName: Text(
@@ -308,7 +316,7 @@ class _drawerListNotLoginedState extends State<drawerListNotLogined> {
           decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/bkgnd.jpg'),
-                fit: BoxFit.cover),
+                fit: BoxFit.contain),
           ),
         ),
         Expanded(

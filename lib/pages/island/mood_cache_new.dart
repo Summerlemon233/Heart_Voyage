@@ -102,7 +102,7 @@ class _mood_cache_newState extends State<mood_cache_new> {
                               border: OutlineInputBorder()),
                         ),*/
 
-                      Text("点击上传图片：",style: TextStyle(color: Colors.white),),
+                      //Text("点击上传图片：",style: TextStyle(color: Colors.white),),
                       Container(
                         height: 400,
                           alignment: Alignment.center,

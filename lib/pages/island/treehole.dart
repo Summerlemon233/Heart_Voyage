@@ -77,20 +77,21 @@ class _treeholeState extends State<treehole> {
                               onPressed: () {
                                 Get.to(treehole_animation());
                               },
+                              child: Text('让坏情绪飞远')),
+                          /*ElevatedButton(
+                              onPressed: () {
+                                Get.to(treehole_animation());
+                              },
                               child: Text('发送给北大心协')),
                           IconButton(
                               onPressed: () {
                                 Get.to(XINXIE());
                               },
-                              icon: Icon(Icons.question_mark,color: Colors.white,)),
+                              icon: Icon(Icons.question_mark,color: Colors.white,)),*/
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            Get.to(treehole_animation());
-                          },
-                          child: Text('让坏情绪飞远')),
+
                     ],
                   )
                   //ElevatedButton(onPressed: (){}, child: child)

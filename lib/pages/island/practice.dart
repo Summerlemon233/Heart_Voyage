@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/island/ZHENGNIAN.dart';
 import 'package:heart_voyage/pages/island/ZHENGNIAN/white_noise.dart';
+import 'package:heart_voyage/pages/island/playlist_noise.dart';
 import 'package:heart_voyage/pages/island/sports.dart';
 
 import '../tabs/sailCanvas.dart';
@@ -74,7 +75,7 @@ class _practicePageState extends State<practicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(229, 220, 203, 1),
+      backgroundColor: Color.fromRGBO(229, 220, 203, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
@@ -127,7 +128,7 @@ class _practicePageState extends State<practicePage> {
             subtitle: Text('可获得的成长值：5分\n所需时长：4分00秒'),
           ),
           const Divider(),
-          const ListTile(
+          /*const ListTile(
             leading: SizedBox(
               height: 70,
               width: 70,
@@ -138,12 +139,12 @@ class _practicePageState extends State<practicePage> {
             ),
             title: Text('按摩舒缓'),
             subtitle: Text('可获得的成长值：5分\n所需时长：7分35秒'),
-          ),
-          const Divider(),
+          ),*/
+          //const Divider(),
           ListTile(
             onTap: ()
             {
-              Get.to(white_noise());
+              Get.to(playlist_noise());
             },
             leading: SizedBox(
               height: 70,

@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:heart_voyage/pages/tabs.dart';
+
+import '../../../system/userdata.dart';
 
 class check_overall_score extends StatefulWidget {
   const check_overall_score({Key? key}) : super(key: key);
@@ -19,7 +23,7 @@ class _check_overall_scoreState extends State<check_overall_score> {
           foregroundColor: Colors.white,title: Text('查看分数',)),
       body: Container(
         margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-        child: Column(
+        child: ListView(
           children: [
             Text('0-4分：没有焦虑症，请注意自我保重。',style: TextStyle(fontSize: 20),),
             Text('5-9分：可能有轻微焦虑症，建议您咨询心理医生或心理医学工作者。',style: TextStyle(fontSize: 20),),
@@ -27,10 +31,14 @@ class _check_overall_scoreState extends State<check_overall_score> {
             Text('14-18分：可能有中重度焦虑症，建议您咨询心理医生或精神科医生。',style: TextStyle(fontSize: 20),),
             Text('19-21分：可能有重度焦虑症，请一定要看心理医生或精神科医生。',style: TextStyle(fontSize: 20),),
             SizedBox(height: 30,),
-            Text('你的焦虑分数为',style: TextStyle(fontSize: 30),),
+            Container(
+              alignment: Alignment.center,
+              child: Text('你的焦虑分数为',style: TextStyle(fontSize: 30),),
+            ),
             SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
+              alignment: Alignment.center,
+              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.15, 5, MediaQuery.of(context).size.width * 0.15, 5),
               decoration: BoxDecoration(
                 color: Color.fromRGBO(224, 167, 63, 1),
                 border: Border.all(width: 0.5),
@@ -38,6 +46,34 @@ class _check_overall_scoreState extends State<check_overall_score> {
               ),
               child: Text("${score}分",style: TextStyle(fontSize: 50),),
             ),
+            Container(
+                padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.2, 20, MediaQuery.of(context).size.width * 0.2, 0),
+                child: ElevatedButton(
+                    /*style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Color.fromRGBO(215, 169, 83, 1)),
+                      foregroundColor: MaterialStateProperty.all(Color.fromRGBO(90, 66, 53, 1)),
+                      minimumSize: MaterialStateProperty.all(Size(
+                          MediaQuery.of(context).size.width * 0.8,
+                          MediaQuery.of(context).size.height * 0.1)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                          side: BorderSide(color: Color.fromRGBO(90, 66, 53, 1),width: 2.0),
+                        ),
+                      ),
+                    ),*/
+                    onPressed: () {
+                      final _last_time_anxiety_box = GetStorage();
+                      var _now = DateTime.now();
+                      int _nowTime = _now.millisecondsSinceEpoch;
+                      _last_time_anxiety_box.write('last_time_anxiety',_nowTime);
+                      print("$basicData");
+                      Get.offAll(Tabs());
+                    },
+                    child: Text("返回到主页面",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),))),
           ],
         ),
       )

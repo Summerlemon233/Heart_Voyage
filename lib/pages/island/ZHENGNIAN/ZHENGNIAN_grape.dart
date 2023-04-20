@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,22 @@ class ZHENGNIAN_grape extends StatefulWidget {
 }
 
 class ZHENGNIAN_grapeState extends State<ZHENGNIAN_grape> with WidgetsBindingObserver {
+  late Timer _timer;
+  int _countdownTime = 0;
+  void startCountdownTimer() {
+    const oneSec = const Duration(seconds: 1);
+
+    var callback = (timer) => {
+      setState(() {
+        if (_countdownTime < 1) {
+          _timer.cancel();
+        } else {
+          _countdownTime = _countdownTime - 1;
+        }
+      })
+    };
+    _timer = Timer.periodic(oneSec, callback);
+  }
   late AudioPlayer _player;
   final _playlist = ConcatenatingAudioSource(children: [
     // Remove this audio source from the Windows and Linux version because it's not supported yet
@@ -44,6 +62,8 @@ class ZHENGNIAN_grapeState extends State<ZHENGNIAN_grape> with WidgetsBindingObs
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
     ));
+    _countdownTime = 1072;
+    startCountdownTimer();
     _init();
   }
 
@@ -92,7 +112,11 @@ class ZHENGNIAN_grapeState extends State<ZHENGNIAN_grape> with WidgetsBindingObs
   void dispose() {
     ambiguate(WidgetsBinding.instance)!.removeObserver(this);
     _player.dispose();
+    if (_timer != null) {
+      _timer.cancel();
+    }
     super.dispose();
+
   }
 
   @override
@@ -214,12 +238,15 @@ class ZHENGNIAN_grapeState extends State<ZHENGNIAN_grape> with WidgetsBindingObs
                     },
                   ),*/
                   SizedBox(height: 8,),
+                  _countdownTime <= 0 ?
                   ElevatedButton(onPressed: (){
                     setState(() {
                       common_widgets.returnDialog(10);
+
                       //Navigator.of(context).pop();
                     });
-                  }, child: Text("我已完成练习")),
+                  }, child: Text("我已完成练习"))
+                      :Container(),
                   SizedBox(height: 8,),
                   /*Expanded(
                     child: Text(
