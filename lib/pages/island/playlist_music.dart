@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/island/ZHENGNIAN.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/bird_noise.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/eye_level.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/forest_noise.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/insect_noise.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/lear_earth.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/liberating.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/night_noise.dart';
+import 'package:heart_voyage/pages/island/ZHENGNIAN/piano_serenade.dart';
 import 'package:heart_voyage/pages/island/ZHENGNIAN/white_noise.dart';
-import 'package:heart_voyage/pages/island/playlist_music.dart';
-import 'package:heart_voyage/pages/island/playlist_noise.dart';
 import 'package:heart_voyage/pages/island/sports.dart';
 
 import '../tabs/sailCanvas.dart';
 import '../tabs/sailIsland.dart';
 import '../tabs/sailTrack.dart';
 import '../tabs/seekHeart.dart';
+import 'ZHENGNIAN/summer_pockets.dart';
 
-class practice extends StatefulWidget {
-  const practice({Key? key}) : super(key: key);
+class playlist_music extends StatefulWidget {
+  const playlist_music({Key? key}) : super(key: key);
 
   @override
-  State<practice> createState() => _practiceState();
+  State<playlist_music> createState() => _playlist_musicState();
 }
 
-class _practiceState extends State<practice> {
+class _playlist_musicState extends State<playlist_music> {
   @override
   Widget build(BuildContext context) {
     int _currentIndex = 4;
@@ -31,7 +38,7 @@ class _practiceState extends State<practice> {
     ];
 
     return practicePage();
-      /*_pages[_currentIndex],
+    /*_pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -79,7 +86,7 @@ class _practicePageState extends State<practicePage> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(45, 73, 104, 1),
         foregroundColor: Colors.white,
-        title: Text("情绪调节"),
+        title: Text("静听一段纯音乐"),
       ),
       body: ListView(
         children: [
@@ -87,75 +94,78 @@ class _practicePageState extends State<practicePage> {
             height: 10,
           ),
           ListTile(
-            leading: const SizedBox(
-              height: 70,
-              width: 70,
+            leading: const AspectRatio(
+              aspectRatio: 1,
               child: Image(
-                image: AssetImage('assets/images/ZHENGNIAN.png'),
+                image: AssetImage('assets/images/eden_album.jpg'),
                 fit: BoxFit.fitHeight,
               ),
             ),
-            title: const Text('正念系列'),
-            subtitle: const Text('可获得的成长值：10分'),
-            onTap: () => Get.to(ZHENGNIAN()),
+            title: const Text('lear earth'),
+            subtitle: const Text('可获得的成长值：5分\n所需时长：5分05秒'),
+            onTap: () => Get.to(lear_earth()),
           ),
+
           const Divider(),
           ListTile(
-            leading: SizedBox(
-              height: 70,
-              width: 70,
+            leading: const AspectRatio(
+              aspectRatio: 1,
               child: Image(
-                image: AssetImage('assets/images/sport.png'),
+                image: AssetImage('assets/images/eden_album.jpg'),
                 fit: BoxFit.fitHeight,
               ),
             ),
-            title: Text('运动解压打卡'),
-            subtitle: Text('可获得的成长值：10分'),
-            onTap: () => Get.to(sports()),
+            title: const Text('Liberating'),
+            subtitle: const Text('可获得的成长值：5分\n所需时长：2分41秒'),
+            onTap: () => Get.to(liberating()),
           ),
           const Divider(),
-          ListTile(
-            leading: SizedBox(
-              height: 70,
-              width: 70,
-              child: Image(
-                image: AssetImage('assets/images/pure_music.png'),
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            title: Text('静听一段纯音乐'),
-            onTap: () => Get.to(playlist_music()),
-            subtitle: Text('可获得的成长值：5分\n所需时长：4分00秒'),
-          ),
-          const Divider(),
-          /*const ListTile(
-            leading: SizedBox(
-              height: 70,
-              width: 70,
-              child: Image(
-                image: AssetImage('assets/images/massage.png'),
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            title: Text('按摩舒缓'),
-            subtitle: Text('可获得的成长值：5分\n所需时长：7分35秒'),
-          ),*/
-          //const Divider(),
           ListTile(
             onTap: ()
             {
-              Get.to(playlist_noise());
+              setState(() {
+                Get.to(eye_level());
+              });
             },
-            leading: SizedBox(
-              height: 70,
-              width: 70,
+            leading: AspectRatio(
+              aspectRatio: 1,
               child: Image(
-                image: AssetImage('assets/images/white_noise.png'),
+                image: AssetImage('assets/images/ef_album.jpg'),
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+            title: Text('Eye level'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：2分02秒'),
+          ),
+          const Divider(),
+          ListTile(
+            onTap: ()
+            {
+              Get.to(piano_serenade());
+            },
+            leading: AspectRatio(
+              aspectRatio: 1,
+              child: Image(
+                image: AssetImage('assets/images/ef_album.jpg'),
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+            title: Text('Piano Serenade'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：3分40秒'),
+          ),
+          const Divider(),
+          //const Divider(),
+          ListTile(
+            leading: AspectRatio(
+              aspectRatio: 1,
+              child: Image(
+                image: AssetImage('assets/images/Summer_Pockets_island.png'),
                 fit: BoxFit.fitHeight,
               ),
             ),
-            title: Text('静听一段白噪音'),
-            subtitle: Text('可获得的成长值：5分\n所需时长：7分20秒'),
+            title: Text('Summer Pockets'),
+            subtitle: Text('可获得的成长值：5分\n所需时长：4分00秒'),
+            onTap: () => Get.to(summer_pockets()),
           ),
           const Divider(),
         ],

@@ -16,11 +16,23 @@ class sailTrack extends StatefulWidget {
   State<sailTrack> createState() => _sailTrackState();
 }
 
-class _sailTrackState extends State<sailTrack> {
+class _sailTrackState extends State<sailTrack> with SingleTickerProviderStateMixin{
+  late final AnimationController _controller;
+  late final Animation<Offset> _slideAnimation;
+
   @override
   void initState() {
     // TODO: implement initState
     loadBasicData();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1000),
+      reverseDuration: Duration(milliseconds: 1000),
+    );
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 0), end: Offset(0, -0.5))
+        .animate(
+        CurvedAnimation(parent: _controller, curve: Curves.linear));
+
     super.initState();
   }
 
@@ -57,10 +69,24 @@ class _sailTrackState extends State<sailTrack> {
           alignment: Alignment.center,
           child: Text("已解锁城市：${basicData['CurrCity']}"),
         ),
+
         Container(
           height: 100,
           padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-          child: returnPet(),
+          child: SlideTransition(
+            position: _slideAnimation,
+            child: GestureDetector(
+              onTap: ()
+              {
+                setState(() {
+                  _controller.forward();
+                  _controller.reverse(from: _controller.upperBound);
+                });
+              },
+              child: returnPet(),
+            ),
+          )
+
         ),
         SizedBox(
           height: 10,

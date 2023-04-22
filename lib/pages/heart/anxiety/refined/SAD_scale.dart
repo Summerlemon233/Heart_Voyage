@@ -5,6 +5,7 @@ import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
 import '../anxiety_instruction.dart';
+import 'SAD_instruction.dart';
 
 
 class CreateSAD_Scale extends StatefulWidget {
@@ -115,15 +116,15 @@ class _SAD_scaleState extends State<SAD_scale> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => anxiety_instruction());
+                        Get.to(() => SAD_instruction());
                       },
                       child: Container(
                         alignment: Alignment.center,
                         height: 50,
                         width: 120,
                         child: Text(
-                          '温馨提示',
-                          style: TextStyle(fontSize: 20),
+                          '点我看看说明',
+                          style: TextStyle(fontSize: 18),
                         ),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(224, 167, 63, 1),

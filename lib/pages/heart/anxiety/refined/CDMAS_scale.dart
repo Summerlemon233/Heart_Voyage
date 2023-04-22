@@ -5,6 +5,8 @@ import 'package:heart_voyage/pages/heart/anxiety/refined/CDMAS_check.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
+import 'CDMAS_instruction.dart';
+
 class CreateCDMAS_Scale extends StatefulWidget {
   final String question;
 
@@ -158,15 +160,15 @@ class _CDMAS_scaleState extends State<CDMAS_scale> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => anxiety_instruction());
+                        Get.to(() => CDMAS_instruction());
                       },
                       child: Container(
                         alignment: Alignment.center,
                         height: 50,
                         width: 120,
                         child: Text(
-                          '温馨提示',
-                          style: TextStyle(fontSize: 20),
+                          '点我看看说明',
+                          style: TextStyle(fontSize: 18),
                         ),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(224, 167, 63, 1),

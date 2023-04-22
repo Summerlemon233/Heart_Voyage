@@ -180,7 +180,7 @@ class ZHENGNIAN_grapeState extends State<ZHENGNIAN_grape> with WidgetsBindingObs
                       Container(
 
                         padding: const EdgeInsets.all(8.0),
-                        child:Image.asset("assets/images/album.jpg",fit: BoxFit.cover,),
+                        child:Image.asset("assets/images/grape_album.png",fit: BoxFit.cover,),
                         height: MediaQuery.of(context).size.width,
                         width: MediaQuery.of(context).size.width,
                       ),

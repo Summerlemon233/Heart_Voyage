@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/heart/anxiety/anxiety_instruction.dart';
 import 'package:heart_voyage/pages/heart/anxiety/refined/ITS_check.dart';
+import 'package:heart_voyage/pages/heart/anxiety/refined/ITS_instruction.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
@@ -102,6 +103,12 @@ class _CreateITS_ScaleState extends State<CreateITS_Scale> {
                     score_ITS += _deltaValue;
                   });
                 }),
+
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             Text(
               '完全不同意',
               style: TextStyle(fontFamily: 'FZ_Kaiti'),
@@ -158,15 +165,15 @@ class _ITS_scaleState extends State<ITS_scale> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => anxiety_instruction());
+                        Get.to(() => ITS_instruction());
                       },
                       child: Container(
                         alignment: Alignment.center,
                         height: 50,
                         width: 120,
                         child: Text(
-                          '温馨提示',
-                          style: TextStyle(fontSize: 20),
+                          '点我看看说明',
+                          style: TextStyle(fontSize: 18),
                         ),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(224, 167, 63, 1),

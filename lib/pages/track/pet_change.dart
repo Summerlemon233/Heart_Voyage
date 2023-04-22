@@ -15,7 +15,7 @@ class pet_change extends StatefulWidget {
 
 class _pet_changeState extends State<pet_change> {
   final List<Widget> cards = [];
-  final List<String> names_pet = ['狗狗', '狐狐', '小狼', '兔兔'];
+  final List<String> names_pet = ['狗狗', '狐狐', '猫猫', '兔兔'];
   final List<String> cond_pet = ['点击选中', '已选中'];
   var nowSelected = basicData['CurrPet'];
   String returnPetName()

@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.2.8
+version: 0.3.0
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
@@ -167,6 +167,13 @@ flutter:
     - assets/images/insect.jpg
     - assets/images/night.jpg
     -
+    - assets/images/breathe_album.jpg
+    - assets/images/sit_album.jpeg
+    - assets/images/body_scan_album.jpeg
+    - assets/images/grape_album.png
+    - assets/images/breathe_space_album.jpeg
+    -
+    - assets/images/ef_album.jpg
     -
     - assets/images/2.0x/massage.png
     - assets/images/2.0x/pure_music.png
@@ -271,6 +278,11 @@ flutter:
     - assets/audio/insect_noise.mp3
     - assets/audio/night_noise.mp3
     - assets/audio/forest_noise.mp3
+    - assets/audio/Eye_level.mp3
+    - assets/audio/lear_earth.mp3
+    - assets/audio/Liberating.mp3
+    - assets/audio/Piano_Serenade.mp3
+    -
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

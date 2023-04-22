@@ -19,6 +19,8 @@ class sign extends StatefulWidget {
 }
 
 class _signState extends State<sign> {
+  int _now = DateTime.now().millisecondsSinceEpoch;
+  final _last_time_signed_box = GetStorage();
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
@@ -56,8 +58,11 @@ class _signState extends State<sign> {
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
     myEvents = returnMyEvents();
-    int _rand = signPhotoPath.length;
+    int _rand = signPhotoPath.length - 1;
      _value= Random().nextInt(_rand);
+     print(_value);
+     print(signPhotoPath[_value]);
+     print(signContents[_value]);
   }
 
   @override
@@ -194,7 +199,7 @@ class _signState extends State<sign> {
               ),
             ),
             Container(
-                child: basicData['isTodaysigned'] == false
+                child: _last_time_signed_box.read('last_time_signed') == null || _now - _last_time_signed_box.read('last_time_signed') > 24 * 60 * 60 * 1000
                     ? ElevatedButton(
                         child: Text("点这里进行签到~"),
                         onPressed: () {
@@ -204,7 +209,7 @@ class _signState extends State<sign> {
                             final _last_time_signed_box = GetStorage();
                             var _now = DateTime.now();
                             int _nowTime = _now.millisecondsSinceEpoch;
-                            _last_time_signed_box.write('last_time_anxiety',_nowTime);
+                            _last_time_signed_box.write('last_time_signed',_nowTime);
                             saveBasicData();
                           });
                           Get.defaultDialog(
@@ -251,6 +256,10 @@ class _signState extends State<sign> {
                         child: Text("今天已签到，点此返回~"),
                         onPressed: () {
                           setState(() {
+                            final _last_time_signed_box = GetStorage();
+                            var _now = DateTime.now();
+                            int _nowTime = _now.millisecondsSinceEpoch;
+                            _last_time_signed_box.write('last_time_signed',_nowTime);
                             Get.offAll(Tabs());
                           });
                         },

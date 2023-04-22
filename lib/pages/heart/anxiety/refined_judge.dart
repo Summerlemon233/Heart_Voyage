@@ -10,7 +10,7 @@ import 'package:heart_voyage/pages/heart/anxiety/refined/FIS_scale.dart';
 import 'package:heart_voyage/pages/heart/anxiety/refined/ITS_scale.dart';
 import 'package:heart_voyage/pages/heart/anxiety/refined/MAQ_scale.dart';
 import 'package:heart_voyage/pages/heart/anxiety/refined/TAS_scale.dart';
-import 'package:heart_voyage/pages/heart/anxiety/refined/graduate_anxiety_scale.dart';
+//import 'package:heart_voyage/pages/heart/anxiety/refined/graduate_anxiety_scale.dart';
 
 import 'refined/SAD_scale.dart';
 

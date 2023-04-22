@@ -41,13 +41,16 @@ class _anxiety_testState extends State<anxiety_test> {
                   int _nowTime = _now.millisecondsSinceEpoch;
                   var _last_anxiety =
                       _last_time_anxiety_box.read('last_time_anxiety');
-                  if (_last_anxiety == null) {
+                  if (_last_anxiety == 1682006152609 || _last_anxiety == null) {
                     Get.to(overall_judge());
                   }
                   else
                   {
                     if(_nowTime - _last_anxiety <= 7 * 24 * 60 * 60 * 1000)
                     {
+                      print(_last_anxiety);
+                      print(_nowTime);
+                      print(_nowTime - _last_anxiety <= 7 * 24 * 60 * 60 * 1000);
                       Get.snackbar('提示', '距离您上一次焦虑测试时间还不到一周。请稍后再进行测试。',snackPosition: SnackPosition.BOTTOM);
                     }
                     else Get.to(overall_judge());

@@ -44,11 +44,10 @@ class _practicePageState extends State<practicePage> {
           height: 10,
         ),
         ListTile(
-          leading: const SizedBox(
-            height: 70,
-            width: 70,
+          leading: AspectRatio(
+            aspectRatio: 1,
             child: Image(
-              image: AssetImage('assets/images/ZHENGNIAN.png'),
+              image: AssetImage('assets/images/breathe_album.jpg'),
               fit: BoxFit.fitHeight,
             ),
           ),
@@ -58,11 +57,10 @@ class _practicePageState extends State<practicePage> {
         ),
         const Divider(),
         ListTile(
-          leading: SizedBox(
-            height: 70,
-            width: 70,
+          leading: AspectRatio(
+            aspectRatio: 1,
             child: Image(
-              image: AssetImage('assets/images/sport.png'),
+              image: AssetImage('assets/images/grape_album.png'),
               fit: BoxFit.fitHeight,
             ),
           ),
@@ -72,11 +70,10 @@ class _practicePageState extends State<practicePage> {
         ),
         const Divider(),
         ListTile(
-          leading: SizedBox(
-            height: 70,
-            width: 70,
+          leading: AspectRatio(
+            aspectRatio: 1,
             child: Image(
-              image: AssetImage('assets/images/pure_music.png'),
+              image: AssetImage('assets/images/body_scan_album.jpeg'),
               fit: BoxFit.fitHeight,
             ),
           ),
@@ -86,11 +83,10 @@ class _practicePageState extends State<practicePage> {
         ),
         const Divider(),
         ListTile(
-          leading: SizedBox(
-            height: 70,
-            width: 70,
+          leading: AspectRatio(
+            aspectRatio: 1,
             child: Image(
-              image: AssetImage('assets/images/massage.png'),
+              image: AssetImage('assets/images/sit_album.jpeg'),
               fit: BoxFit.fitHeight,
             ),
           ),
@@ -100,11 +96,10 @@ class _practicePageState extends State<practicePage> {
         ),
         const Divider(),
         ListTile(
-          leading: SizedBox(
-            height: 70,
-            width: 70,
+          leading: AspectRatio(
+            aspectRatio: 1,
             child: Image(
-              image: AssetImage('assets/images/white_noise.png'),
+              image: AssetImage('assets/images/breathe_space_album.jpeg'),
               fit: BoxFit.fitHeight,
             ),
           ),

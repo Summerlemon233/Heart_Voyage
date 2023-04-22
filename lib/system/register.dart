@@ -6,6 +6,7 @@ import 'package:heart_voyage/system/userdata_func.dart';
 import 'package:apifm/apifm.dart' as Apifm;
 
 import './userdata.dart';
+import 'common_image.dart';
 
 class register extends StatefulWidget {
   const register({Key? key}) : super(key: key);
@@ -168,6 +169,7 @@ class _registerState extends State<register> {
               if (/*IO_Data.checkUser(userReg)==  */ true) {
                 print('signin_success');
                 Future.delayed(Duration(milliseconds: 10), () {
+                  selectedAsset_avatar = null;
                   Get.to(change_avatar_register());
                 });
               }

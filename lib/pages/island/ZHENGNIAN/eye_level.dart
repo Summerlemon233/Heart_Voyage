@@ -9,14 +9,17 @@ import 'package:rxdart/rxdart.dart';
 import 'package:heart_voyage/system/common_widgets.dart';
 import '../../../system/common_audio.dart';
 
-class ZHENGNIAN_sit extends StatefulWidget {
-  const ZHENGNIAN_sit({Key? key}) : super(key: key);
+
+
+
+class eye_level extends StatefulWidget {
+  const eye_level({Key? key}) : super(key: key);
 
   @override
-  ZHENGNIAN_sitState createState() => ZHENGNIAN_sitState();
+  eye_levelState createState() => eye_levelState();
 }
 
-class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserver {
+class eye_levelState extends State<eye_level> with WidgetsBindingObserver {
   late Timer _timer;
   int _countdownTime = 0;
   void startCountdownTimer() {
@@ -33,6 +36,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
     };
     _timer = Timer.periodic(oneSec, callback);
   }
+
   late AudioPlayer _player;
   final _playlist = ConcatenatingAudioSource(children: [
     // Remove this audio source from the Windows and Linux version because it's not supported yet
@@ -40,13 +44,12 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
         ![TargetPlatform.windows, TargetPlatform.linux]
             .contains(defaultTargetPlatform))
       ClippingAudioSource(
-        child: AudioSource.uri(
-          Uri.parse("asset:///assets/audio/ZHENGNIAN_sit.mp3"),),
+        child: AudioSource.asset('assets/audio/Eye_level.mp3'),
         tag: AudioMetadata(
-          album: "正念静坐",
-          title: "正念",
+          album: "Eye level",
+          title: "天门",
           artwork:
-          "https://cdnimg103.lizhi.fm/audio_cover/2018/08/06/2685062117539402759_320x320.jpg",
+          "https://img.moegirl.org.cn/common/1/19/%E9%B8%9F%E7%99%BD%E5%B2%9B.jpg",
         ),
       ),
   ]);
@@ -60,9 +63,8 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
     _player = AudioPlayer();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
-
     ));
-    _countdownTime = 897;
+    _countdownTime = 122;
     startCountdownTimer();
     _init();
   }
@@ -112,6 +114,9 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
   void dispose() {
     ambiguate(WidgetsBinding.instance)!.removeObserver(this);
     _player.dispose();
+    if (_timer != null) {
+      _timer.cancel();
+    }
     super.dispose();
   }
 
@@ -149,7 +154,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(45, 73, 104, 1),
           foregroundColor: Colors.white,
-          title: Text("正念"),
+          title: Text("静听一段纯音乐"),
           leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: ()
           {
             setState(() {
@@ -176,7 +181,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
                       Container(
 
                         padding: const EdgeInsets.all(8.0),
-                        child:Image.asset("assets/images/sit_album.jpeg",fit: BoxFit.cover,),
+                        child:Image.asset("assets/images/ef_album.jpg",fit: BoxFit.cover,),
                         height: MediaQuery.of(context).size.width,
                         width: MediaQuery.of(context).size.width,
                       ),

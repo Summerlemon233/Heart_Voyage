@@ -41,12 +41,13 @@ class _about_usState extends State<about_us> {
                           style: TextStyle(fontSize: 30),
                         ),
                         Text(
-                          "Version 0.2.8 Beta \n2023/04/20",
+                          "Version 0.3.0 预览版 \n2023/04/22",
                           style: TextStyle(
                               fontSize: 20, fontFamily: 'Helvetica_Neue'),
                         ),
                         Text(
-                          "开发者：反内卷小队\n（参赛同学来自北京大学心理与认知科学学院、信息科学技术学院、光华管理学院）",
+                          "开发者：反内卷小队\n",
+                          //"（参赛同学来自北京大学心理与认知科学学院、信息科学技术学院、光华管理学院）",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15, fontFamily: 'Helvetica_Neue'),

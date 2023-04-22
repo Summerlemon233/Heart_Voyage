@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heart_voyage/pages/heart/anxiety/anxiety_instruction.dart';
 import 'package:heart_voyage/pages/heart/anxiety/refined/AAT_check.dart';
+import 'package:heart_voyage/pages/heart/anxiety/refined/AAT_instruction.dart';
 import 'package:heart_voyage/system/userdata.dart';
 import 'package:heart_voyage/system/userdata_func.dart';
 
@@ -205,15 +206,15 @@ class _AAT_scaleState extends State<AAT_scale> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => anxiety_instruction());
+                        Get.to(() => AAT_instruction());
                       },
                       child: Container(
                         alignment: Alignment.center,
                         height: 50,
                         width: 120,
                         child: Text(
-                          '温馨提示',
-                          style: TextStyle(fontSize: 20),
+                          '点我看看说明',
+                          style: TextStyle(fontSize: 18),
                         ),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(224, 167, 63, 1),

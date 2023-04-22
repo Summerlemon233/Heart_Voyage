@@ -12,14 +12,14 @@ import '../../../system/common_audio.dart';
 
 
 
-class pure_music extends StatefulWidget {
-  const pure_music({Key? key}) : super(key: key);
+class lear_earth extends StatefulWidget {
+  const lear_earth({Key? key}) : super(key: key);
 
   @override
-  pure_musicState createState() => pure_musicState();
+  lear_earthState createState() => lear_earthState();
 }
 
-class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
+class lear_earthState extends State<lear_earth> with WidgetsBindingObserver {
   late Timer _timer;
   int _countdownTime = 0;
   void startCountdownTimer() {
@@ -44,10 +44,10 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
         ![TargetPlatform.windows, TargetPlatform.linux]
             .contains(defaultTargetPlatform))
       ClippingAudioSource(
-        child: AudioSource.asset('assets/audio/Summer_Pockets.mp3'),
+        child: AudioSource.asset('assets/audio/lear_earth.mp3'),
         tag: AudioMetadata(
-          album: "Summer Pockets",
-          title: "水月陵",
+          album: "lear earth",
+          title: "天门",
           artwork:
           "https://img.moegirl.org.cn/common/1/19/%E9%B8%9F%E7%99%BD%E5%B2%9B.jpg",
         ),
@@ -64,7 +64,7 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
     ));
-    _countdownTime = 240;
+    _countdownTime = 305;
     startCountdownTimer();
     _init();
   }
@@ -168,31 +168,31 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               StreamBuilder<SequenceState?>(
-                  stream: _player.sequenceStateStream,
-                  builder: (context, snapshot) {
-                    final state = snapshot.data;
-                    if (state?.sequence.isEmpty ?? true) {
-                      return const SizedBox();
-                    }
-                    final metadata = state!.currentSource!.tag as AudioMetadata;
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
+                stream: _player.sequenceStateStream,
+                builder: (context, snapshot) {
+                  final state = snapshot.data;
+                  if (state?.sequence.isEmpty ?? true) {
+                    return const SizedBox();
+                  }
+                  final metadata = state!.currentSource!.tag as AudioMetadata;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
 
-                            padding: const EdgeInsets.all(8.0),
-                            child:Image.asset("assets/images/Summer_Pockets_island.png",fit: BoxFit.cover,),
-                            height: MediaQuery.of(context).size.width,
-                            width: MediaQuery.of(context).size.width,
-                          ),
+                        padding: const EdgeInsets.all(8.0),
+                        child:Image.asset("assets/images/eden_album.jpg",fit: BoxFit.cover,),
+                        height: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width,
+                      ),
 
-                        Text(metadata.album,
-                            style: Theme.of(context).textTheme.headline6),
-                        Text(metadata.title),
-                      ],
-                    );
-                  },
-                ),
+                      Text(metadata.album,
+                          style: Theme.of(context).textTheme.headline6),
+                      Text(metadata.title),
+                    ],
+                  );
+                },
+              ),
               ControlButtons(_player),
               StreamBuilder<PositionData>(
                 stream: _positionDataStream,
@@ -247,7 +247,7 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
                       //Navigator.of(context).pop();
                     });
                   }, child: Text("我已完成练习"))
-                  :Container(),
+                      :Container(),
                   SizedBox(height: 8,),
                   /*Expanded(
                     child: Text(
@@ -320,9 +320,9 @@ class pure_musicState extends State<pure_music> with WidgetsBindingObserver {
           },
         ),
       ),*/
-        ],
-      ),
-    ),
+            ],
+          ),
+        ),
         /*floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {

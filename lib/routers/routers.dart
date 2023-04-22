@@ -18,7 +18,7 @@ import '../pages/heart/anxiety/refined/ASMC_scale.dart';
 import '../pages/heart/anxiety/refined/ITS_scale.dart';
 import '../pages/heart/anxiety/refined/MAQ_scale.dart';
 import '../pages/heart/anxiety/refined/TAS_scale.dart';
-import '../pages/heart/anxiety/refined/graduate_anxiety_scale.dart';
+
 
 //sailIslands
 import '../pages/island/mood_cache.dart';
@@ -59,7 +59,7 @@ class AppPage
     GetPage(name:'/ITS_scale',page: () => ITS_scale()),
     GetPage(name:'/MAQ_scale',page: () => MAQ_scale()),
     GetPage(name:'/TAS_scale',page: () => TAS_scale()),
-    GetPage(name:'/graduate_anxiety_scale',page: () => graduate_anxiety_scale()),
+    //GetPage(name:'/graduate_anxiety_scale',page: () => graduate_anxiety_scale()),
     GetPage(name:'/mood_cache',page: () => mood_cache()),
     GetPage(name:'/practice',page: () => practice()),
     GetPage(name:'/treehole',page: () => treehole()),

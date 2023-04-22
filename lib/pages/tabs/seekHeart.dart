@@ -99,7 +99,7 @@ class _seekHeartState extends State<seekHeart> {
             onPressed: () {
               Get.to(anxiety_test());
             },
-            child: Text("焦虑自测",
+            child: Text("量表",
               style: TextStyle(
                 fontSize: 32,
               ),))),

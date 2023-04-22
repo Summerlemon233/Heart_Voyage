@@ -9,14 +9,17 @@ import 'package:rxdart/rxdart.dart';
 import 'package:heart_voyage/system/common_widgets.dart';
 import '../../../system/common_audio.dart';
 
-class ZHENGNIAN_sit extends StatefulWidget {
-  const ZHENGNIAN_sit({Key? key}) : super(key: key);
+
+
+
+class summer_pockets extends StatefulWidget {
+  const summer_pockets({Key? key}) : super(key: key);
 
   @override
-  ZHENGNIAN_sitState createState() => ZHENGNIAN_sitState();
+  summer_pocketsState createState() => summer_pocketsState();
 }
 
-class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserver {
+class summer_pocketsState extends State<summer_pockets> with WidgetsBindingObserver {
   late Timer _timer;
   int _countdownTime = 0;
   void startCountdownTimer() {
@@ -33,6 +36,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
     };
     _timer = Timer.periodic(oneSec, callback);
   }
+
   late AudioPlayer _player;
   final _playlist = ConcatenatingAudioSource(children: [
     // Remove this audio source from the Windows and Linux version because it's not supported yet
@@ -40,13 +44,12 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
         ![TargetPlatform.windows, TargetPlatform.linux]
             .contains(defaultTargetPlatform))
       ClippingAudioSource(
-        child: AudioSource.uri(
-          Uri.parse("asset:///assets/audio/ZHENGNIAN_sit.mp3"),),
+        child: AudioSource.asset('assets/audio/Summer_Pockets.mp3'),
         tag: AudioMetadata(
-          album: "正念静坐",
-          title: "正念",
+          album: "Summer Pockets",
+          title: "水月陵",
           artwork:
-          "https://cdnimg103.lizhi.fm/audio_cover/2018/08/06/2685062117539402759_320x320.jpg",
+          "https://img.moegirl.org.cn/common/1/19/%E9%B8%9F%E7%99%BD%E5%B2%9B.jpg",
         ),
       ),
   ]);
@@ -60,9 +63,8 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
     _player = AudioPlayer();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
-
     ));
-    _countdownTime = 897;
+    _countdownTime = 240;
     startCountdownTimer();
     _init();
   }
@@ -112,6 +114,9 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
   void dispose() {
     ambiguate(WidgetsBinding.instance)!.removeObserver(this);
     _player.dispose();
+    if (_timer != null) {
+      _timer.cancel();
+    }
     super.dispose();
   }
 
@@ -149,7 +154,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(45, 73, 104, 1),
           foregroundColor: Colors.white,
-          title: Text("正念"),
+          title: Text("静听一段纯音乐"),
           leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: ()
           {
             setState(() {
@@ -163,31 +168,31 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               StreamBuilder<SequenceState?>(
-                stream: _player.sequenceStateStream,
-                builder: (context, snapshot) {
-                  final state = snapshot.data;
-                  if (state?.sequence.isEmpty ?? true) {
-                    return const SizedBox();
-                  }
-                  final metadata = state!.currentSource!.tag as AudioMetadata;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
+                  stream: _player.sequenceStateStream,
+                  builder: (context, snapshot) {
+                    final state = snapshot.data;
+                    if (state?.sequence.isEmpty ?? true) {
+                      return const SizedBox();
+                    }
+                    final metadata = state!.currentSource!.tag as AudioMetadata;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
 
-                        padding: const EdgeInsets.all(8.0),
-                        child:Image.asset("assets/images/sit_album.jpeg",fit: BoxFit.cover,),
-                        height: MediaQuery.of(context).size.width,
-                        width: MediaQuery.of(context).size.width,
-                      ),
+                            padding: const EdgeInsets.all(8.0),
+                            child:Image.asset("assets/images/Summer_Pockets_island.png",fit: BoxFit.cover,),
+                            height: MediaQuery.of(context).size.width,
+                            width: MediaQuery.of(context).size.width,
+                          ),
 
-                      Text(metadata.album,
-                          style: Theme.of(context).textTheme.headline6),
-                      Text(metadata.title),
-                    ],
-                  );
-                },
-              ),
+                        Text(metadata.album,
+                            style: Theme.of(context).textTheme.headline6),
+                        Text(metadata.title),
+                      ],
+                    );
+                  },
+                ),
               ControlButtons(_player),
               StreamBuilder<PositionData>(
                 stream: _positionDataStream,
@@ -242,7 +247,7 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
                       //Navigator.of(context).pop();
                     });
                   }, child: Text("我已完成练习"))
-                      :Container(),
+                  :Container(),
                   SizedBox(height: 8,),
                   /*Expanded(
                     child: Text(
@@ -315,9 +320,9 @@ class ZHENGNIAN_sitState extends State<ZHENGNIAN_sit> with WidgetsBindingObserve
           },
         ),
       ),*/
-            ],
-          ),
-        ),
+        ],
+      ),
+    ),
         /*floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {

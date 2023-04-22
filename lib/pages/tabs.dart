@@ -26,10 +26,11 @@ class Tabs extends StatefulWidget {
 
 class _TabsState extends State<Tabs> {
   final List<Widget> _pages = [
-    seekHeart(),
+    sailTrack(),
+
     sailIsland(),
     sailCanvas(),
-    sailTrack()
+    seekHeart(),
   ];
   final List<Widget> _drawer = [drawerListLogined(), drawerListNotLogined()];
 
@@ -47,12 +48,15 @@ class _TabsState extends State<Tabs> {
       {
         Get.offAll(login());
       }
-      if(_last_time_signed_box.read('last_time_anxiety') == null)
+      if(_last_time_signed_box.read('last_time_signed') == null)
       {
+        print("1");
         Get.offAll(sign());
       }
-      else if(_now - _last_time_signed_box.read('last_time_anxiety') > 24 * 60 * 60 * 1000)
+      else if(_now - _last_time_signed_box.read('last_time_signed') > 24 * 60 * 60 * 1000)
       {
+        print(_last_time_signed_box.read('last_time_signed'));
+        print("1");
         Get.offAll(sign());
       }
     });
@@ -113,8 +117,8 @@ class _TabsState extends State<Tabs> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "寻心",
+            icon: Icon(Icons.add_road),
+            label: "航迹",
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
@@ -127,11 +131,12 @@ class _TabsState extends State<Tabs> {
             label: "扬帆",
             backgroundColor: Colors.blue,
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_road),
-            label: "航迹",
+            icon: Icon(Icons.search),
+            label: "寻心",
             backgroundColor: Colors.blue,
-          )
+          ),
         ],
         type: BottomNavigationBarType.fixed,
       ),

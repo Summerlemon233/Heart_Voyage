@@ -71,7 +71,7 @@ class _treehole_animationState extends State<treehole_animation>
             child: ScaleTransition(
               scale: scaleAnimation,
               child: Container(
-                alignment: Alignment.center,
+   /**/             alignment: Alignment.center,
                 height: MediaQuery.of(context).size.height * 0.25,
                 width: MediaQuery.of(context).size.width * 0.6,
                 decoration: BoxDecoration(

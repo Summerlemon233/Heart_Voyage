@@ -17,6 +17,7 @@ class _change_avatar_registerState extends State<change_avatar_register> {
 
   @override
   void initState() {
+    readPhotoPath_avatar();
     _isSelectedAvatar = !(PhotoPath_avatar[0] == "");
     // TODO: implement initState
     super.initState();
@@ -51,7 +52,7 @@ class _change_avatar_registerState extends State<change_avatar_register> {
             Container(
               height: MediaQuery.of(context).size.width * 0.5,
               width: MediaQuery.of(context).size.width * 0.5,
-              child: _isSelectedAvatar
+              child: selectedAsset_avatar != null
                   ? Avatar(image: imageFromFile(PhotoPath_avatar[0]).image)
                   : Avatar(image: AssetImage('assets/images/pet0.png')),
               margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
@@ -67,6 +68,13 @@ class _change_avatar_registerState extends State<change_avatar_register> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.01,
+            ),
+            Center(
+              child: Text(
+                "点击刷新键看看自己更换的头像吧",
+                style: TextStyle(fontSize: 15, ),
+                textAlign: TextAlign.center,
+              ),
             ),
             Container(
               padding: EdgeInsets.fromLTRB(
