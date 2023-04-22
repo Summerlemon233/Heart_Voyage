@@ -45,6 +45,9 @@ git clone https://github.com/Summerlemon233/Heart_Voyage.git
 ```
 2. 打开Android Studio 或 Xcode，打开项目
 3. 运行项目
+```
+flutter run 
+```
 
 ## 开发者
 
