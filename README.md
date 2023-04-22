@@ -1,16 +1,60 @@
-# 心旅
+# ❤️ 心旅 - 帮助大学生预防和处理焦虑情绪的应用
 
-A new Flutter project.
+心旅是一款以娱乐化形式为先导，吸引大学生接触并利用心理学资源帮助自己预防或处理焦虑情绪的应用。该应用利用多元评价体系以自我效能感为中介从根本上对抗焦虑情绪。
 
-## Getting Started
+## 📱 应用板块介绍
 
-This project is a starting point for a Flutter application.
+心旅包括以下四个板块：
 
-A few resources to get you started if this is your first Flutter project:
+### 🗺️ 航迹
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+在航迹中，用户的心宠进行全国旅行，这也就是我们对用户的情景化养成系引入。心宠的“旅行经费”需要由用户使用心旅其他版块获得的成长值提供。
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🌴 心岛
+
+心岛板块提供吐苦水树洞、愉快情绪寄存站和情绪调节功能，希望通过的表达性写作和正念、运动打卡、白噪音等方式帮助用户缓解焦虑和其他不良情绪。
+
+### ⛵ 扬帆
+
+扬帆板块是用户上传自己做的有意义的事，利用多元智能理论帮助用户关注到多种多样的自己。
+
+### 🔍 寻心
+
+在寻心板块提供每日心理学小知识打卡和多种焦虑相关量表的资源，用户可以在需要时或感兴趣时使用。同时，焦虑水平总体量表（SAS量表）通过要求用户隔至少一周填写一次的机制，增加量表效力，为用户建立周期性的情绪水平检测。
+
+## 🚀 技术实现
+
+心旅基于Flutter打造，目前在Android和iOS系统上运作正常。Flutter是一款由Google开发的跨平台框架，拥有丰富的组件库和强大的性能，使得心旅具有良好的用户体验和较高的运行效率。同时，Flutter的开发效率较高，代码可重用性好，也方便我们对应用进行维护和升级。
+
+## 📝 版权声明
+
+心旅是一款开源项目，我们欢迎各位开发者和用户对其进行学习、使用和分享。我们的项目代码和文档均遵循MIT开源协议，如需使用请遵循相关规定。
+
+## 运行环境
+
+- Flutter SDK 2.18.0 或以上版本（需要支持空安全）
+- Android Studio 4.1.0 或以上版本
+- IntelliJ IDEA 2022.3 或以上版本
+- Xcode 12.4 或以上版本
+
+## 安装步骤
+
+1. 克隆项目到本地
+```
+git clone https://github.com/Summerlemon233/Heart_Voyage.git
+```
+2. 打开Android Studio 或 Xcode，打开项目
+3. 运行项目
+
+## 开发者
+
+- [Summerlemon233](https://github.com/Summerlemon233)
+
+## 📧 联系我们
+
+如果您对心旅项目有任何疑问或建议，欢迎通过以下方式联系我们：
+
+- 邮箱：summerlemon@stu.pku.edu.cn
+- 微信公众号：壬寅心旅
+
+我们会尽快回复您的来信，并为您提供满意的答复和服务。
