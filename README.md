@@ -33,21 +33,32 @@
 ## 运行环境
 
 - Flutter SDK 2.18.0 或以上版本（需要支持空安全）
-- Android Studio 4.1.0 或以上版本
-- IntelliJ IDEA 2022.3 或以上版本
-- Xcode 12.4 或以上版本
+- Android Studio 4.1.0 或以上版本（需要安装Dart、Flutter插件）
+- IntelliJ IDEA 2022.3 或以上版本（需要安装Dart、Flutter插件）
+- Xcode 12.4 或以上版本（需要macOS 12.0 Monterey或更高版本的操作系统，且正确配置了HomeBrew、CocoaPods）
+- Visual Studio Code（需要安装Dart、Flutter插件）
 
 ## 安装步骤
 
-1. 克隆项目到本地
+1. 克隆项目到本地。
 ```
 git clone https://github.com/Summerlemon233/Heart_Voyage.git
 ```
-2. 打开Android Studio 或 Xcode，打开项目
-3. 运行项目
+2. 打开Android Studio，IntelliJ IDEA，Visual Studio Code或 Xcode，打开项目
+3. 获取依赖。
+```
+flutter pub get 
+```
+4. 连接并选择调试设备。打开Android Studio中配置好的安卓模拟器，或用USB连接一台打开了USB调试的Android手机，或使用Edge/Chrome/Windows本地环境调试（部分功能可能不可用）。
+5. 运行项目。
 ```
 flutter run 
 ```
+
+## 最新版本
+- 心旅App v0.3.0 预览版（2023年4月22日发布）
+  Android 版 APK安装包（适配32/64位ARM架构处理器和x86架构处理器）请跳转至项目的Release通道下载。
+  您也可以从镜像地址下载：[蓝奏云](https://wwvs.lanzoub.com/inV2O0tpqgwj)
 
 ## 开发者
 
@@ -59,5 +70,6 @@ flutter run
 
 - 邮箱：summerlemon@stu.pku.edu.cn
 - 微信公众号：壬寅心旅
+- 官方网站：[心旅App](heartvoyage.cn) (正在施工中)
 
 我们会尽快回复您的来信，并为您提供满意的答复和服务。
